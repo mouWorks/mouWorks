@@ -1,0 +1,1 @@
+{"virtualbox":{"/var/www/html/LindyHopperTaipei":{"guestpath":"/var/www/html/LindyHopperTaipei","hostpath":"/home/mou/Code/LindyHopperTaipei/LindyHopperTaipei","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/mou/Code/LindyHopperTaipei","disabled":false,"__vagrantfile":true}}}
