@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
     end
 
   config.vm.provision "setup", type: "shell", path: "vagrantScripts/setup.sh"
-  #config.vm.provision "apacheSetting", type: "shell", path: "vagrantScripts/apacheSetting.sh"
+  config.vm.provision "apacheSetting", type: "shell", path: "vagrantScripts/apacheSetting.sh", run: "always"
   config.vm.provision "composer", type: "shell", path: "vagrantScripts/composer.sh"
 
 end
