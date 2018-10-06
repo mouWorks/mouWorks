@@ -1,0 +1,24 @@
+mou_nginx:
+  container_name: nginx
+  build: ./nginx
+  ports:
+  - "80:80"
+  volumes:
+  # source
+  - ./src/:/usr/share/nginx/html
+  links:
+  - mou_php_fpm
+
+mou_php_fpm:
+  container_name: php_fpm
+  build: ./php-fpm
+  volumes:
+  - ./src/:/usr/share/nginx/html
+  links:
+  - mou_mysql
+
+mou_mysql:
+  image: mysql:5.5
+  container_name: mysql
+  environment:
+  - MYSQL_ROOT_PASSWORD=123456
