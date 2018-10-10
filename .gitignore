@@ -29,3 +29,4 @@ Homestead.json
 ubuntu-xenial-16.04-cloudimg-console.log
 
 _conf.php
+/www/_conf/_googleApi.json
