@@ -10,9 +10,12 @@ status:
 	docker ps
 stop:
 	@echo ">>> Stop container......"
-
+	docker-compose stop
 cleanup: stop
 	@echo ">>> Remove existing container......"
-
 ssh:
 	@echo ">>> Dive into the container......"
+
+restart:    stop start
+
+

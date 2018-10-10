@@ -13,7 +13,7 @@ mou_php_fpm:
   container_name: php_fpm
   build: ./php-fpm
   volumes:
-  - ./src/:/usr/share/nginx/html
+  - ./www:/usr/share/nginx/html
   links:
   - mou_mysql
 
