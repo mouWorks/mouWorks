@@ -8,7 +8,6 @@ $app = new Slim\App($config);
 // Twig Related
 // Get container
 $container = $app->getContainer();
-
 // Register component on container
 $container['view'] = function ($container) {
     $view = new \Slim\Views\Twig('templates', [
@@ -31,18 +30,34 @@ $app->get('/hello/{name}', function ($request, $response, $args) {
 })->setName('profile');
 
 
+// Render Twig template in route
+$app->get('/', function ($request, $response, $args) {
+    return $this->view->render($response, 'index.twig', [
+//        'name' => $args['name']
+    ]);
+})->setName('index');
 
-$app->get('/', function()
-{
-//    $loader = new Twig_Loader_String();
-//
-//    $twig = new Twig_Environment($loader);
-//
-//    echo $twig->render('Hello {{ name }}!', array('name' => 'Asika'));
-//
+// Render Twig template in route
+$app->get('/blues', function ($request, $response, $args) {
+    return $this->view->render($response, 'overview.twig', [
+//        'name' => $args['name']
+    ]);
+})->setName('index');
 
-    echo '<h1>HelloWorld, Bro</h1>';
-});
+
+
+//
+//$app->get('/', function()
+//{
+////    $loader = new Twig_Loader_String();
+////
+////    $twig = new Twig_Environment($loader);
+////
+////    echo $twig->render('Hello {{ name }}!', array('name' => 'Asika'));
+////
+//
+//    echo '<h1>HelloWorld, Bro</h1>';
+//});
 
 $app->get('/blog', function()
 {
@@ -53,15 +68,6 @@ $app->get('/swing', function()
 {
     echo '<h1>Swing thing</h1>';
 });
-
-
-$app->get('/blues', function()
-{
-    echo '<h1>Blues thing</h1>';
-});
-
-$app->run();
-
 
 
 $app->run();
