@@ -9,12 +9,14 @@ branches:
   - master
 before_install:
   - openssl aes-256-cbc -K $encrypted_2a25c86426a5_key -iv $encrypted_2a25c86426a5_iv
-    -in digitalOcean_id_rsa.enc -out ~\/.ssh/digitalOcean_id_rsa -d
+    -in digitalOcean_id_rsa.enc -out ~\/tmp/digitalOcean_id_rsa -d
   - composer install --no-dev --optimize-autoloader
-  - chmod 600 ~/.ssh/digitalOcean_id_rsa
-  - echo -e "Host 178.128.57.166\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - chmod 600 ~/tmp/digitalOcean_id_rsa
 
 after_success:
+  - echo '>>>List files'
+  - ls
+  - echo '>>>Copy Files'
   - scp README.md root@178.128.57.166:/var/www
 
 cache:
