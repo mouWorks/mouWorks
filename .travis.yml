@@ -15,7 +15,8 @@ before_install:
   - echo -e "Host 178.128.57.166\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
 after_success:
-  - ssh travis@178.128.57.166 -p 22 'cd /var/www && git pull && rm -r !(www)'
+  - scp README.md root@178.128.57.166:/var/www
+
 cache:
   directories:
   - vendor
