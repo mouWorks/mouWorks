@@ -1,0 +1,21 @@
+language: php
+php:
+- 7.2
+addons:
+  sshknownhosts:
+  - secure: WEEDvrIs9wVBCEi+bj/4jOOYXrAsMb6QFkNokfhe9oxGupf29rZzA7No82t05fo5p2HQT45XBf9EtghOOtUH919nz//lR99uQZeSZTHVcstTHNu1ih0EfEdGYXbWOfRlmb8TnxKU5vGkq1To6gpbqTacMd+INKeE01b4PCp1JgsEL3sfW1HMsJ0BBEAIl817CnxykqiQcXWLow005woRCgh3nQH9Nof/oKOIHxs2ODQ3OX071qeQdLGLsNJ7MU7XiTFT5foHekwEWLmnsPxrkYk23vRXPhJ6czA6hoLLfX/85bTfCKzlKC/aUqNrJtWwZs1eq7k/7Yc4QnorIwOkBGZvGUzuxau1g0k/KPxU/pdj4Dty1iqTA7hOUKb1B/39xanCrjyH5lh/EcsI8PYQQgfJBNM6cIsgqAW8TGS3/Vzr+sHu8zqZrViRy+TI67wAhZAwQGOzWHgyI+u7OLbfON95ehRODkrNJw3ZftNUMKxs5uyaYVQOf4mGQngxy2JQXOyf0CBWwQ/KVL4vbEhydij1EGyXiWMExsAkK4g6TaQC5aCmVefMR1dqbQo5W/lZG99F97e1kDz0B8W1gEq33m8ERyuqPB/rYingoiOY6IWT76yRyx9Gt/6h9s8R2+UNUSYLr3f7Lqwmc3ZME0OCIAFIGtEIdEUrjG5xZA6DTlo=
+branches:
+  only:
+  - master
+before_install:
+  - openssl aes-256-cbc -K $encrypted_2a25c86426a5_key -iv $encrypted_2a25c86426a5_iv
+    -in digitalOcean_id_rsa.enc -out ~\/.ssh/digitalOcean_id_rsa -d
+  - composer install --no-dev --optimize-autoloader
+  - chmod 600 ~/.ssh/digitalOcean_id_rsa
+  - echo -e "Host 178.128.57.166\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
+after_success:
+  - ssh travis@178.128.57.166 -p 22 'cd /var/www && git pull && rm -r !(www)'
+cache:
+  directories:
+  - vendor

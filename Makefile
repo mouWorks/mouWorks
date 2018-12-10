@@ -17,5 +17,11 @@ ssh:
 	@echo ">>> Dive into the container......"
 
 restart:    stop start
+	@echo ">>> Dive into the container......"
 
+pack:
+	@echo ">>> TravisCI: packing the files......"
+	zip -r code.zip /www
 
+upload:
+	@echo ">>> TravisCI: upload
