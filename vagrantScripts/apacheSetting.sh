@@ -1,7 +1,7 @@
 #! /bin/sh
 # Setup Apache Settings Here
 # 1. Replace Apache2.conf with our setup
-# 2. Use LindyHopperTaipei.conf to setup
+# 2. Use mouwork.conf to setup
 # 3. Use index.php to redirect
 
 #Move the redirect
