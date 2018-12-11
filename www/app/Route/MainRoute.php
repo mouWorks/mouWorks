@@ -11,11 +11,13 @@ $app->get('/hello/{name}', function ($request, $response, $args) {
 })->setName('profile');
 
 // Render Twig template in route
-$app->get('/', function ($request, $response, $args) {
-    return $this->view->render($response, 'index.twig', [
-//        'name' => $args['name']
-    ]);
-})->setName('index');
+//$app->get('/', function ($request, $response, $args) {
+//    return $this->view->render($response, 'index.twig', [
+////        'name' => $args['name']
+//    ]);
+//})->setName('index');
+
+$app->get('/', \App\Controllers\IndexController::class . ':randWords');
 
 // Render Twig template in route
 $app->get('/blues', function ($request, $response, $args) {
