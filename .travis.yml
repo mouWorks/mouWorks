@@ -21,5 +21,10 @@ script:
   - scp -i /tmp/digitalOcean_id_rsa -o StrictHostKeyChecking=no code.tar.gz update.sh root@178.128.57.166:/tmp
   - ssh -i /tmp/digitalOcean_id_rsa root@178.128.57.166 " cd /tmp && chmod +x update.sh && ./update.sh "
 
+cache:
+  directories:
+  # See https://blog.wyrihaximus.net/2015/07/composer-cache-on-travis/
+  - $HOME/.composer/cache/files
+  - vendor
 
 
