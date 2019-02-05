@@ -22,3 +22,12 @@ mou_mysql:
   container_name: mysql
   environment:
   - MYSQL_ROOT_PASSWORD=123456
+  ports:
+    - "3306:3306"
+
+mou_adminer:
+  image: adminer
+  ports:
+    - "8080:8080"
+  links:
+    - mou_mysql
