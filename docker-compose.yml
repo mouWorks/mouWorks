@@ -1,6 +1,6 @@
 mou_nginx:
   container_name: nginx
-  build: ./nginx
+  build: ./DockerConf/nginx
   ports:
   - "80:80"
   volumes:
@@ -11,7 +11,7 @@ mou_nginx:
 
 mou_php_fpm:
   container_name: php_fpm
-  build: ./php-fpm
+  build: ./DockerConf/php-fpm
   volumes:
   - ./www:/usr/share/nginx/html
   links:

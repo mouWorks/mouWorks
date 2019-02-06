@@ -1,6 +1,6 @@
 FROM php:7.1-fpm
 
-COPY ./php.ini /usr/local/etc/php/
+COPY php.ini /usr/local/etc/php/
 
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install mbstring
