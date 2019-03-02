@@ -10,7 +10,6 @@ class ChokeController extends BaseController
     const TYPE_TEXT = 1;
     const TYPE_IMAGE = 2;
 
-
     /**
      * 發送圖片
      *

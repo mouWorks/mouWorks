@@ -49,3 +49,4 @@ $app->get('/choker', function ($request, $response, $args) {
     return $this->view->render($response, 'choker.twig');
 })->setName('index');
 
+$app->get('/checkConfig', Cont\BaseController::class . ':checkData');

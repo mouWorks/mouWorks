@@ -64,16 +64,22 @@ class BaseController
      */
     public function checkData()
     {
-        if(isset(SLACK_CHANNEL_WEBHOOKURL) && SLACK_CHANNEL_WEBHOOKURL != ''){
+        if(defined('SLACK_CHANNEL_WEBHOOKURL')){
             echo 'slack channel data exist <br/>';
+        }else{
+            echo 'Slack Channel Webhook: error';
         }
 
-        if(isset(LINE_BEARER) && LINE_BEARER != ''){
-            echo 'Line bearer data exist <br/>';
+        if(defined('LINE_BEARER')){
+            echo 'line bearer data exist <br/>';
+        }else{
+            echo 'line bearer: error';
         }
 
-        if(isset(CHATROOM_ID) && CHATROOM_ID != ''){
-            echo 'chatroom ID data exist <br/>';
+        if(defined('CHATROOM_ID')){
+            echo 'chatroom data exist <br/>';
+        }else{
+            echo 'chatroom: error';
         }
     }
 
