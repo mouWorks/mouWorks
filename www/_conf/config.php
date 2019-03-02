@@ -4,12 +4,11 @@
 
 define('SLIM_ROOT', __DIR__);
 
-
 return array(
-    'debug' => true,
-    'mode'  => 'development',
+    'debug' => false,
+    'mode'  => 'production',
     'templates.path' => __DIR__ . '/templates',
     'settings' => [
-        'displayErrorDetails' => true,
+        'displayErrorDetails' => false,
     ],
 );

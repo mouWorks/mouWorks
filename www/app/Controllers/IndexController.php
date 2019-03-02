@@ -2,22 +2,18 @@
 
 namespace App\Controllers;
 
-class IndexController
+class IndexController extends BaseController
 {
     public function test(){
         echo 'what u wanna do';
     }
 
-	public function randWords()
-	{
+    public function randWords()
+    {
+        $stuffArray = ['施工中', '崩崩中', 'G排中', 'QQ中', 'CD中', 'R6中', 'PS中', '防彈中'];
+        $rand_result = array_rand($stuffArray, 1);
 
-		$stuffArray = ['施工中', '崩崩中', 'G排中', 'QQ中', 'CD中', 'R6中', 'PS中', '防彈中'];
-		$rand_result = array_rand($stuffArray, 1);
-
-		echo "Current STAT:";
-		echo $stuffArray[$rand_result];
-	}
-
-    
-    
+        echo "Current STATUS:";
+        echo $stuffArray[$rand_result];
+    }
 }

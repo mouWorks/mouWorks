@@ -1,6 +1,8 @@
 <?php
 
-$app->get('/test', \App\Controllers\BluesController::class . ':getList');
+use \App\Controllers as Cont;
+
+$app->get('/test', Cont\BluesController::class . ':getList');
 
 
 // Render Twig template in route
@@ -17,7 +19,7 @@ $app->get('/hello/{name}', function ($request, $response, $args) {
 //    ]);
 //})->setName('index');
 
-$app->get('/', \App\Controllers\IndexController::class . ':randWords');
+$app->get('/', Cont\IndexController::class . ':randWords');
 
 // Render Twig template in route
 $app->get('/blues', function ($request, $response, $args) {
@@ -35,3 +37,15 @@ $app->get('/swing', function()
 {
     echo '<h1>Swing thing</h1>';
 });
+
+
+$app->get('/choke/text/{text}', function ($request, $response, $args) {
+
+    $choke  = new Cont\ChokeController();
+    $choke->Text($args['text']);
+});
+
+$app->get('/choker', function ($request, $response, $args) {
+    return $this->view->render($response, 'choker.twig');
+})->setName('index');
+
