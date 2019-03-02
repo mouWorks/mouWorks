@@ -1,6 +1,14 @@
 <?php
 // config.php
 //require '_conf.php';
+//require '_confProd.php';
+
+//Local
+if(FALSE){
+    require '_conf.php';
+}else{
+    require '_confProd.php';
+}
 
 define('SLIM_ROOT', __DIR__);
 
