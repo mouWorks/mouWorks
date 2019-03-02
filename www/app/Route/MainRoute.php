@@ -50,3 +50,4 @@ $app->get('/choker', function ($request, $response, $args) {
 })->setName('index');
 
 $app->get('/checkConfig', Cont\BaseController::class . ':checkData');
+$app->get('/checkSlack', Cont\BaseController::class . ':checkSlack');

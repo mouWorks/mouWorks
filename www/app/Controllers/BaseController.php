@@ -83,4 +83,14 @@ class BaseController
         }
     }
 
+    /**
+     * Check if Slack would work
+     */
+    public function checkSlack(){
+
+        $data = ['text'=> 'Huston, we are testing slack'];
+        $this->toss2Slack($data);
+    }
+
+
 }//end of Class
