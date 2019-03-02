@@ -59,5 +59,22 @@ class BaseController
         curl_close ($ch);
     }
 
+    /**
+     * Check if data Exist
+     */
+    public function checkData()
+    {
+        if(isset(SLACK_CHANNEL_WEBHOOKURL) && SLACK_CHANNEL_WEBHOOKURL != ''){
+            echo 'slack channel data exist <br/>';
+        }
+
+        if(isset(LINE_BEARER) && LINE_BEARER != ''){
+            echo 'Line bearer data exist <br/>';
+        }
+
+        if(isset(CHATROOM_ID) && CHATROOM_ID != ''){
+            echo 'chatroom ID data exist <br/>';
+        }
+    }
 
 }//end of Class

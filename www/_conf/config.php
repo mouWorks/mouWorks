@@ -5,10 +5,10 @@
 define('SLIM_ROOT', __DIR__);
 
 return array(
-    'debug' => false,
+    'debug' => true,
     'mode'  => 'production',
     'templates.path' => __DIR__ . '/templates',
     'settings' => [
-        'displayErrorDetails' => false,
+        'displayErrorDetails' => true,
     ],
 );

@@ -38,13 +38,13 @@ $app->get('/swing', function()
     echo '<h1>Swing thing</h1>';
 });
 
-
 $app->get('/choke/text/{text}', function ($request, $response, $args) {
 
     $choke  = new Cont\ChokeController();
     $choke->Text($args['text']);
 });
 
+//Choker Interface
 $app->get('/choker', function ($request, $response, $args) {
     return $this->view->render($response, 'choker.twig');
 })->setName('index');
