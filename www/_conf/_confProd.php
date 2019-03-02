@@ -1,4 +1,5 @@
 <?php
+
     # Temp, need to find a way to inject
     define('LINE_BEARER', $_ENV['LINE_BEARER']);
     define('CHATROOM_ID', $_ENV['CHATROOM_ID']);

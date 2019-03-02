@@ -4,7 +4,7 @@
 //require '_confProd.php';
 
 //Local
-if(FALSE){
+if($_SERVER['HTTP_HOST'] == 'localhost'){
     require '_conf.php';
 }else{
     require '_confProd.php';

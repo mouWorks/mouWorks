@@ -81,7 +81,7 @@ class ChokeController extends BaseController
      * @param string $authBearer
      * @param array $msg
      */
-    private function _curlPostLineChatRoom(string $chatRoomID, string $authBearer, array $msg)
+    private function _curlPostLineChatRoom($chatRoomID, $authBearer, $msg)
     {
         $data = [
             'to'=> $chatRoomID,
@@ -99,7 +99,7 @@ class ChokeController extends BaseController
             curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0');
 
             $headers = [
-                "Authorization: Bearer " . LINE_BEARER,
+                "Authorization: Bearer " . $authBearer,
                 "Content-Type: application/json",
                 "Cache-Control: no-cache"
             ];
