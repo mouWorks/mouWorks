@@ -54,6 +54,7 @@ $app->get('/checkSlack', Cont\BaseController::class . ':checkSlack');
 
 $app->get('/checkEnv', function()
 {
-    echo 'Now Checking Env Var<br/>';
+    echo 'Now Checking Env Var:[ ';
     echo getenv('TEST_SHIT');
+    echo ' ]';
 });
