@@ -92,5 +92,4 @@ class BaseController
         $this->toss2Slack($data);
     }
 
-
 }//end of Class

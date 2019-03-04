@@ -1,5 +1,15 @@
 <?php
-// config.php
+
+//Environment Variables
+$envVars = [
+    'LINE_BEARER',
+    'CHATROOM_ID',
+    'SLACK_CHANNEL_WEBHOOKURL'
+];
+//Loop thru
+foreach($envVars as $envName){
+    define($envName, getenv($envName));
+}
 
 //Local
 if($_SERVER['HTTP_HOST'] == 'localhost'){
