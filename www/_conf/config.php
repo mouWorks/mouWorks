@@ -1,22 +1,18 @@
 <?php
 // config.php
-//require '_conf.php';
-//require '_confProd.php';
 
 //Local
 if($_SERVER['HTTP_HOST'] == 'localhost'){
-    require '_conf.php';
+    require '_confLocal.php';
 }else{
     require '_confProd.php';
 }
 
-define('SLIM_ROOT', __DIR__);
-
 return array(
-    'debug' => true,
-    'mode'  => 'production',
+    'debug' => DEBUG,
+    'mode'  => STAGE,
     'templates.path' => __DIR__ . '/templates',
     'settings' => [
-        'displayErrorDetails' => true,
+        'displayErrorDetails' => DEBUG,
     ],
 );

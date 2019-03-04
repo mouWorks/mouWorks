@@ -6,6 +6,6 @@
     define('SLACK_CHANNEL_WEBHOOKURL', getenv('SLACK_CHANNEL_WEBHOOKURL'));
 
     # Env Related
-    define('ENV', 'PROD');
-    define('DEBUG', false);
-    define('STAGE', 'production');
+    define('ENV', 'LOCAL');
+    define('DEBUG', true);
+    define('STAGE', 'development');
