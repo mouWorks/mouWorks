@@ -1,12 +1,17 @@
 <?php
 // index.php - Main entrance for files.
 
-use App\Controllers as Controllers;
-use App\Route as Route;
+define('DIR_VENDOR', __DIR__.'/vendor/');
+// Autoloader
+if (file_exists(DIR_VENDOR . 'autoload.php')) {
+    require_once(DIR_VENDOR . 'autoload.php');
+}
 
-require_once 'vendor/autoload.php';
 $config = require_once '_conf/config.php';
 $app = new Slim\App($config);
+
+$dotEnv = Dotenv\Dotenv::create(__DIR__.'/_conf/');
+$dotEnv->load();
 
 // Twig Related
 // Get container
@@ -24,8 +29,6 @@ $container['view'] = function ($container) {
 
     return $view;
 };
-
-
 
 /*
  * Load Routes
