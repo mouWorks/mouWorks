@@ -2,6 +2,8 @@
 // index.php - Main entrance for files.
 
 define('DIR_VENDOR', __DIR__.'/vendor/');
+define('ENV_PATH', __DIR__.'/_conf/');
+
 // Autoloader
 if (file_exists(DIR_VENDOR . 'autoload.php')) {
     require_once(DIR_VENDOR . 'autoload.php');
@@ -10,7 +12,12 @@ if (file_exists(DIR_VENDOR . 'autoload.php')) {
 $config = require_once '_conf/config.php';
 $app = new Slim\App($config);
 
-$dotEnv = Dotenv\Dotenv::create(__DIR__.'/_conf/');
+if (!file_exists(ENV_PATH . '.env')) {
+    echo 'Missing ENV file. Exit';
+    exit();
+}
+
+$dotEnv = Dotenv\Dotenv::create(ENV_PATH);
 $dotEnv->load();
 
 // Twig Related
