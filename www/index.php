@@ -9,9 +9,6 @@ if (file_exists(DIR_VENDOR . 'autoload.php')) {
     require_once(DIR_VENDOR . 'autoload.php');
 }
 
-$config = require_once '_conf/config.php';
-$app = new Slim\App($config);
-
 if (!file_exists(ENV_PATH . '.env')) {
     echo 'Missing ENV file. Exit';
     exit();
@@ -19,6 +16,9 @@ if (!file_exists(ENV_PATH . '.env')) {
 
 $dotEnv = Dotenv\Dotenv::create(ENV_PATH);
 $dotEnv->load();
+
+$config = require_once '_conf/config.php';
+$app = new Slim\App($config);
 
 // Twig Related
 // Get container
