@@ -74,7 +74,7 @@
     </div>
 
     <footer class="footer">
-        <p>&copy; 2018 q3buxya, Inc.</p>
+        <p>&copy; 2019 q3buxya, Inc.</p>
     </footer>
 
 </div> <!-- /container -->
@@ -90,17 +90,14 @@
     $( document ).ready(function() {
 
         $('.choke').on('click', function(){
-            //simpleChoke();
-            $('.choke').attr('disabled','disabled');
-            $('.choke').addClass('btn-secondary');
-            $('.choke').removeClass('btn-success');
-            setTimeout(function() {
-                $('.choke').removeAttr('disabled');
-                $('.choke').addClass('btn-success');
-                $('.choke').removeClass('btn-secondary');
-            },800);   // enable after 1 seconds
-        });
 
+            simpleChoke();
+
+            target = $('.choke');
+            tempDisableButton(target);
+
+        });
+        
         function simpleChoke(){
 
             chokeString = $('.chokeTextInput').val();
@@ -119,6 +116,19 @@
 
             });
         }
+
+        function tempDisableButton(target) {
+
+            target.attr('disabled','disabled');
+            target.addClass('btn-secondary');
+            target.removeClass('btn-success');
+            setTimeout(function() {
+                target.removeAttr('disabled');
+                target.addClass('btn-success');
+                target.removeClass('btn-secondary');
+            },800);   // enable after 1 seconds
+        }
+
     });
 
 
