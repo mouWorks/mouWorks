@@ -16,7 +16,8 @@ before_install:
 script:
 - cd www
 - composer install --no-dev --optimize-autoloader
-- echo TEST_SHIT=friedchicken > /_conf/.env
+- touch _conf/.env
+- echo TEST_SHIT=friedchicken > _conf/.env
 - cd ..
 - tar -czvf code.tar.gz www
 - scp -i /tmp/digitalOcean_id_rsa -o StrictHostKeyChecking=no code.tar.gz update.sh
