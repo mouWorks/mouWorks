@@ -51,3 +51,8 @@ $app->get('/choker', function ($request, $response, $args) {
 
 $app->get('/checkConfig', Cont\BaseController::class . ':checkData');
 $app->get('/checkSlack', Cont\BaseController::class . ':checkSlack');
+
+$app->get('/checkEnv', function()
+{
+    echo TEST_ENV;
+});
