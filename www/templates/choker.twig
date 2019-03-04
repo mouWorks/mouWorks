@@ -51,7 +51,7 @@
         <div class="col-lg-6">
             <h4>嗆結婚</h4>
             <p>
-                <a class="btn btn-lg btn-success choke" href="#" role="button">CHOKE</a>
+                <a class="btn btn-lg btn-success" href="#" role="button">CHOKE</a>
             </p>
 
             <h4>嗆SSD</h4>
@@ -90,7 +90,15 @@
     $( document ).ready(function() {
 
         $('.choke').on('click', function(){
-            simpleChoke();
+            //simpleChoke();
+            $('.choke').attr('disabled','disabled');
+            $('.choke').addClass('btn-secondary');
+            $('.choke').removeClass('btn-success');
+            setTimeout(function() {
+                $('.choke').removeAttr('disabled');
+                $('.choke').addClass('btn-success');
+                $('.choke').removeClass('btn-secondary');
+            },800);   // enable after 1 seconds
         });
 
         function simpleChoke(){
@@ -107,7 +115,6 @@
 
                 $.get( getUrl, function( data ) {
                     $( ".result" ).html( data );
-                    alert( "You have choked!" );
                 });
 
             });
