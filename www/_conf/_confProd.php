@@ -1,6 +1,6 @@
 <?php
 
     # Temp, need to find a way to inject
-    define('LINE_BEARER', $_ENV['LINE_BEARER']);
-    define('CHATROOM_ID', $_ENV['CHATROOM_ID']);
-    define('SLACK_CHANNEL_WEBHOOKURL', $_ENV['SLACK_CHANNEL_WEBHOOKURL']);
+    define('LINE_BEARER', getenv('LINE_BEARER'));
+    define('CHATROOM_ID', getenv('CHATROOM_ID'));
+    define('SLACK_CHANNEL_WEBHOOKURL', getenv('SLACK_CHANNEL_WEBHOOKURL'));
