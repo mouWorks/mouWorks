@@ -1,5 +1,6 @@
 language: php
 git:
+  quiet: true
   depth: 3
 php:
 - 7.2
@@ -17,7 +18,7 @@ script:
 - cd www
 - composer install --no-dev --optimize-autoloader
 - touch _conf/.env
-- echo TEST_SHIT=friedchicken > _conf/.env
+- echo TEST_SHIT=$TEST_SHIT > _conf/.env
 - cd ..
 - tar -czvf code.tar.gz www
 - scp -i /tmp/digitalOcean_id_rsa -o StrictHostKeyChecking=no code.tar.gz update.sh
