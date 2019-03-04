@@ -18,9 +18,9 @@ script:
 - cd www
 - composer install --no-dev --optimize-autoloader
 - touch _conf/.env
-- echo -e "CHATROOM_ID=$CHATROOM_ID\n" >> _conf/.env
-- echo -e "LINE_BEARER=$LINE_BEARER\n" >> _conf/.env
-- echo -e "SLACK_CHANNEL_WEBHOOKURL=$SLACK_CHANNEL_WEBHOOKURL\n" >> _conf/.env
+- echo "CHATROOM_ID=$CHATROOM_ID\n" >> _conf/.env
+- echo "LINE_BEARER=$LINE_BEARER\n" >> _conf/.env
+- echo -e "SLACK_CHANNEL_WEBHOOKURL=$SLACK_CHANNEL_WEBHOOKURL" >> _conf/.env
 - echo -e "TEST_SHIT=$TEST_SHIT\n" >> _conf/.env
 - cd ..
 - tar -czf code.tar.gz www
