@@ -8,7 +8,7 @@ echo "Create Folder"
 sudo mkdir /var/www/html
 
 echo ">>> Unzipping files inside Droplet"
-tar -xvf code.tar.gz
+tar -xf code.tar.gz
 sudo mv www html
 sudo mv html /var/www
 
