@@ -10,7 +10,7 @@ if (file_exists(DIR_VENDOR . 'autoload.php')) {
 }
 
 if (!file_exists(ENV_PATH . '.env')) {
-    echo 'Missing ENV file. Exit';
+    echo 'Missing ENV file. Exit @index.php';
     exit();
 }
 

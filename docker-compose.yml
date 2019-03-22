@@ -1,46 +1,29 @@
-#mou_nginx:
-#  container_name: nginx
-#  build: ./DockerConf/nginx
-#  ports:
-#  - "80:80"
-#  volumes:
-#  # source
-#  - ./src/:/usr/share/nginx/html
-#  links:
-#  - mou_php_fpm
-
-#mou_apache:
-#  container_name: apache
-#  build: ./DockerConf/apache
-#  volumes:
-#  - ./www::/var/www/html
-#  links:
-#  - mou_php_fpm
-#  ports:
-#  - "80:80"
-
-mou_php_fpm:
-  container_name: php_fpm
-  build: ./DockerConf/php-fpm
-  volumes:
-  - ./www:/var/www/html
-  links:
-  - mou_mysql
-  ports:
-  - "80:80"
-
-mou_mysql:
-  container_name: mysql
-  build: ./DockerConf/MySQL
-  environment:
-  - MYSQL_ROOT_PASSWORD=123456
-  ports:
-    - "3306:3306"
-
-mou_adminer:
-  container_name: adminer
-  build: ./DockerConf/adminer
-  ports:
-    - "8080:8080"
-  links:
-    - mou_mysql
+version: "3.2"
+services:
+  php:
+    build: './DockerConf/php-fpm/'
+    networks:
+      - backend
+    volumes:
+      - ./www/:/var/www/html/
+  apache:
+    build: './DockerConf/apache/'
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - frontend
+      - backend
+    ports: # Maps Local 8080 to 80 port @Docker Image
+      - "8080:80"
+    volumes:
+      - ./www/:/var/www/html/
+  mysql:
+    image: mysql:5.6.40
+    networks:
+      - backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+networks:
+  frontend:
+  backend:

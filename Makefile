@@ -1,9 +1,11 @@
 #!/usr/bin/make -f
-build: container-build vendor
+build: container-build vendor start
 	@echo ">>> Build Container and Vendor"
 container-build:
 	@echo ">>> Build Services (Docker Container)......"
 	docker-compose build --parallel
+rebuild: stop destroy build start
+	@echo ">>> Rebuild the whole process"
 start:
 	@echo ">>> Starting Container ......"
 	docker-compose up -d --no-recreate
@@ -14,12 +16,15 @@ stop:
 	@echo ">>> Stop container......"
 	docker-compose stop
 destroy: vendor-remove
-	@echo ">>> Destroy Services ......(Containers && Images)"
+	@echo ">>> Destroy Services ......(Containers)"
+	docker-compose down --remove-orphans
+cleanup: destroy
+	@echo ">>> Destroy Services ......(Images)"
 	docker-compose down --rmi 'all'
 ssh:
 	@echo ">>> Dive into the container......"
 
-restart:    stop start
+restart: stop start
 	@echo ">>> Dive into the container......"
 
 pack:
