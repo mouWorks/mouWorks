@@ -1,21 +1,33 @@
-mou_nginx:
-  container_name: nginx
-  build: ./DockerConf/nginx
-  ports:
-  - "80:80"
-  volumes:
-  # source
-  - ./src/:/usr/share/nginx/html
-  links:
-  - mou_php_fpm
+#mou_nginx:
+#  container_name: nginx
+#  build: ./DockerConf/nginx
+#  ports:
+#  - "80:80"
+#  volumes:
+#  # source
+#  - ./src/:/usr/share/nginx/html
+#  links:
+#  - mou_php_fpm
+
+#mou_apache:
+#  container_name: apache
+#  build: ./DockerConf/apache
+#  volumes:
+#  - ./www::/var/www/html
+#  links:
+#  - mou_php_fpm
+#  ports:
+#  - "80:80"
 
 mou_php_fpm:
   container_name: php_fpm
   build: ./DockerConf/php-fpm
   volumes:
-  - ./www:/usr/share/nginx/html
+  - ./www:/var/www/html
   links:
   - mou_mysql
+  ports:
+  - "80:80"
 
 mou_mysql:
   container_name: mysql
