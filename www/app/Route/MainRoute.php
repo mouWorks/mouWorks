@@ -28,9 +28,17 @@ $app->get('/blues', function ($request, $response, $args) {
     ]);
 })->setName('index');
 
-$app->get('/blog', function()
-{
-    echo '<h1>This is the blog site</h1>';
+//
+//$app->get('/blog', function()
+//{
+//    echo '<h1>This is the blog site</h1>';
+//
+//
+//
+//});
+
+$app->get('/blog', function ($request, $response, $args) {
+    return $this->view->render($response, 'blog.twig');
 });
 
 $app->get('/swing', function()
@@ -48,6 +56,13 @@ $app->get('/choke/text/{text}', function ($request, $response, $args) {
 $app->get('/choker', function ($request, $response, $args) {
     return $this->view->render($response, 'choker.twig');
 })->setName('index');
+
+//L30 Wedding Album
+$app->get('/leoWedding', function ($request, $response, $args) {
+    return $this->view->render($response, 'leowedding.twig');
+});
+
+
 
 $app->get('/checkConfig', Cont\BaseController::class . ':checkData');
 $app->get('/checkSlack', Cont\BaseController::class . ':checkSlack');

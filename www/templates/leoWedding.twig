@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<h1> cc Leo Wedding Photos</h1>
+
+<span class='images'></span>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<!-- cdnjs -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.6/jquery.lazy.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.6/jquery.lazy.plugins.min.js"></script>
+
+<style>
+    .lazy {
+        width: 300px;
+        height: 300px;
+        display: block;
+    }
+</style>
+
+<script type="text/javascript">
+    var prefix = 'https://s3-us-west-2.amazonaws.com/q3buxya/';
+
+    var jsonPath = prefix + 'WeddingHelper/L30/web/'
+
+    $.getJSON( jsonPath + "images.json", function( data ) {
+
+        var imgAlbum = '';
+        var result = data.forEach(function(item, index, array){
+
+            if(item.indexOf('.jpg') >= 0){
+                currentImage = prefix + item;
+                console.log(currentImage);
+
+                imgAlbum += '<a href="' + currentImage + '"><img class="lazy" data-src="' + currentImage + '" alt="Loading" height="100" width="100">';
+            }
+        });
+        //Mount
+        $(".images").after( imgAlbum );
+        $('.lazy').lazy();
+    }); //end getJson
+</script>
+</html>
