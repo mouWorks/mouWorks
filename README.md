@@ -1,7 +1,9 @@
 MouWorks
 ===
 
-# https://m0u.work
+#### https://m0u.work
 
 * Status
-    * Now trying with TravisCI
+    * [X] - Now trying with TravisCI
+    * [X] - Add a blog page
+    * [ ] - Add 404 page, 500 page and Favicon
