@@ -3,6 +3,8 @@ var chokeString = '';
 //DOC Ready
 $( document ).ready(function() {
 
+    $('h6').html('0003');
+
     $('.choke').on('click', function(){
 
         simpleChoke();
@@ -12,13 +14,51 @@ $( document ).ready(function() {
 
     });
 
+    function formatText(chokeString){
+
+        var type = checkTextType();
+
+        switch(type) {
+
+            case 'bold':
+
+                return " *" + chokeString + "* ";
+
+                break;
+
+
+            case 'italic':
+
+                return " _" + chokeString + "_ ";
+                break;
+
+
+            case 'highlight':
+
+                return " `" + chokeString + "` ";
+                break;
+
+        }
+
+        return chokeString;
+    }
+
+
+    function checkTextType(){
+        return $('input[name=textOptions]:checked').attr('data-id');
+    }
+
     function simpleChoke(){
 
         chokeString = $('.chokeTextInput').val();
-        ajaxCurl(chokeString);
+
+        ajaxCurl(formatText(chokeString));
+        //ajaxCurl(chokeString);
     }
 
     function ajaxCurl(chokeString){
+
+        // console.log(chokeString);
 
         $( document ).ready(function() {
 
