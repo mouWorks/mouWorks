@@ -23,19 +23,10 @@ $app->get('/', Cont\IndexController::class . ':randWords');
 
 // Render Twig template in route
 $app->get('/blues', function ($request, $response, $args) {
-    return $this->view->render($response, 'overview.twig', [
+    return $this->view->render($response, 'dance.twig', [
 //        'name' => $args['name']
     ]);
 })->setName('index');
-
-//
-//$app->get('/blog', function()
-//{
-//    echo '<h1>This is the blog site</h1>';
-//
-//
-//
-//});
 
 $app->get('/blog', function ($request, $response, $args) {
     return $this->view->render($response, 'blog.twig');
