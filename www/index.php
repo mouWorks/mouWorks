@@ -18,7 +18,12 @@ $dotEnv = Dotenv\Dotenv::create(ENV_PATH);
 $dotEnv->load();
 
 $config = require_once '_conf/config.php';
-$app = new Slim\App($config);
+
+$c = new \Slim\Container($config);
+
+
+
+$app = new Slim\App($c);
 
 // Twig Related
 // Get container
@@ -37,6 +42,29 @@ $container['view'] = function ($container) {
     return $view;
 };
 
+//Override the default Not Found Handler
+$container['notFoundHandler'] = function ($c) {
+    return function ($request, $response) use ($c) {
+        return $c['view']->render($response->withStatus(404), '/4041.html', [
+            "desc" => "Well Your page is not found. Sorry."
+        ]);
+    };
+};
+
+//Define Error here
+$container['errorHandler'] = function ($c) {
+    return function ($request, $response, $exception) use ($c) {
+
+        //Maybe toss to slack here
+        $base = new \App\Controllers\BaseController();
+        $base->toss2Slack($exception);
+
+        return $c['view']->render($response->withStatus(500), '/500.html', [
+            "desc" => "Well Your page is not found. Sorry."
+        ]);
+    };
+};
+
 /*
  * Load Routes
  */
@@ -44,6 +72,5 @@ $routeFiles = glob('app/Route/*.php');
 foreach ($routeFiles as $file) {
     require_once $file;
 }
-
 
 $app->run();
