@@ -9,6 +9,9 @@ class BluesController extends EventController
 {
     private $container  = null;
 
+    //Test
+    public $longStringDesc = '3.29.是 1982 年起開業的 ROXY 38 歲生日. 這一個特殊的夜晚. 我們邀請一支精湛表演 藍調搖滾音樂的樂團 WILD ALIBIS 與愛好音樂的您一起歡慶．請朋友們都早一點光臨．00:00 前免費入場．還加送您 4 瓶免費啤酒．';
+
     public function __construct($container)
     {
         $this->container = $container;
@@ -36,9 +39,7 @@ class BluesController extends EventController
 
         $data['pageContent'] = $pageContent;
         $data['navBar'] = $this->getNavbar();
-
-
-
+        $data['longText'] = $this->longStringDesc;
 
         return $this->container->view->render($response, 'dance.twig', $data);
     }
