@@ -3,7 +3,7 @@ var chokeString = '';
 //DOC Ready
 $( document ).ready(function() {
 
-    $('h6').html('0003');
+    $('h6').html('0004');
 
     $('.choke').on('click', function(){
 
