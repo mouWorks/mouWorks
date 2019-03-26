@@ -21,12 +21,7 @@ $app->get('/hello/{name}', function ($request, $response, $args) {
 
 $app->get('/', Cont\IndexController::class . ':randWords');
 
-// Render Twig template in route
-$app->get('/blues', function ($request, $response, $args) {
-    return $this->view->render($response, 'dance.twig', [
-//        'name' => $args['name']
-    ]);
-})->setName('index');
+$app->get('/blues', Cont\BluesController::class . ':getCoverPage');
 
 $app->get('/blog', function ($request, $response, $args) {
     return $this->view->render($response, 'blog.twig');
