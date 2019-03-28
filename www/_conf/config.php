@@ -11,8 +11,7 @@ foreach($envVars as $envName){
     define($envName, getenv($envName));
 }
 
-//Local
-if($_SERVER['HTTP_HOST'] == 'localhost'){
+if(preg_match('/localhost/i', $_SERVER['HTTP_HOST'])){
     require '_confLocal.php';
 }else{
     require '_confProd.php';
