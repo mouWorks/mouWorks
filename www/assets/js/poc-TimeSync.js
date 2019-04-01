@@ -43,7 +43,8 @@ function readystatechangehandler() {
         $('#returned').text(returned); //Client Side Received
         $('#receiving').text(receiving); //Server Side RESPOND
 
-        var diffMs = difference / 1000 + 'ms';
+        var diffMs = difference;
+        // var diffMs = difference / 1000 + 'ms'; //Not sure about this
 
         $('#diff').text(diffMs); //Add the Diff
 
