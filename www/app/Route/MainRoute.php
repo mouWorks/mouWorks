@@ -69,3 +69,11 @@ $app->get('/checkdb', Cont\EventController::class . ':connectDB');
 //    echo getenv('TEST_SHIT');
 //    echo ' ]';
 //});
+
+
+//Testing Time Sync
+$app->get('/getServerTime', Cont\PocController::class . ':getServerTime');
+
+$app->get('/checkTimeSync', function ($request, $response, $args) {
+    return $this->view->render($response, '/poc/checkTimeSync.twig');
+});
