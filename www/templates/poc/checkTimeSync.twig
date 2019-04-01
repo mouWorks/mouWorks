@@ -6,9 +6,9 @@
 {% block body %}
     <div class="container">
         <div class="row">
-        <div class="col-2"></div>
+        <div class="col-1"></div>
 
-        <div class="col-8">
+        <div class="col-10">
             <h2>@MouWorks</h2>
             <h3>Poc: 驗證 Time Sync issue</h3>
             <hr/>
@@ -18,23 +18,27 @@
                     <th>時間點</th>
                     <th>當下 TimeStamp</th>
                     <th>差異 Diff</th>
+                    <th>差異說明</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>原始時間點</td>
+                    <td>JS Client 開始(GET Request)</td>
                     <td id="original"></td>
+                    <td> N/A </td>
                     <td> N/A </td>
                 </tr>
                 <tr>
-                    <td>收到時間點</td>
+                    <td>Server 收到</td>
                     <td id="receive"></td>
-                    <td id="receive_diff"></td>
+                    <td id="sending"></td>
+                    <td>去程時間差</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>Server 回送</td>
+                    <td id="transmit"></td>
+                    <td id="receiving"></td>
+                    <td>回程時間差</td>
                 </tr>
                 </tbody>
             </table>

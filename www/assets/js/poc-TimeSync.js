@@ -19,19 +19,29 @@ request.send();
 function readystatechangehandler() {
     var returned = (new Date).getTime();
     if (request.readyState === 4 && request.status === 200) {
+
         var timestamp = request.responseText.split('|');
+
+        console.log(timestamp);
+
         var original = + timestamp[0];
         var receive = + timestamp[1];
         var transmit = + timestamp[2];
-        var sending = receive - original;
-        var receiving = returned - transmit;
+
+        var sending = receive - original; // time diff :: go ->
+        var receiving = returned - transmit // time diff :: <- back
+
         var roundtrip = sending + receiving;
+
         var oneway = roundtrip / 2;
         var difference = sending - oneway; // this is what you want
 
-        $('#original').text(original); //Original Time
-        $('#receive').text(receive); //Original Time
-        //$('#receive_diff').text(transmit);
+        $('#original').text(original); //JS Ajax Make GET Request
+        $('#receive').text(receive); //Server Side Receive
+        $('#sending').text(sending); //time Diff
+
+        $('#transmit').text(transmit); //Server Side RESPOND
+        $('#receiving').text(receiving); //Server Side RESPOND
 
         console.log(difference);
         // so the server time will be client time + difference

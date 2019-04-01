@@ -10,10 +10,10 @@ class PocController extends BaseController
 
         if(($request->getParam('original')) !== null){
             $original =  $request->getParam('original');
-            echo $original . ' | ';
+            echo $original . '|';
         }
 
-        echo $receive . ' | ';
+        echo $receive . '|';
         echo round(microtime(true) * 1000);
     }
 }
