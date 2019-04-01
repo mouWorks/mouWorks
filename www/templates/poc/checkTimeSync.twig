@@ -29,19 +29,27 @@
                     <td> N/A </td>
                 </tr>
                 <tr>
-                    <td>Server 收到</td>
+                    <td>Server 收到&回送</td>
                     <td id="receive"></td>
                     <td id="sending"></td>
                     <td>去程時間差</td>
                 </tr>
                 <tr>
-                    <td>Server 回送</td>
-                    <td id="transmit"></td>
+                    <td>Client 收到</td>
+                    <td id="returned"></td>
                     <td id="receiving"></td>
                     <td>回程時間差</td>
                 </tr>
                 </tbody>
             </table>
+            <hr/>
+            <div>平均時間差:
+                <strong><span id="diff"></span></strong>
+                <p>
+                   公式:(去程 - 回程) / 2
+                </p>
+
+            </div>
 
 
         </div><!-- Middle box-->

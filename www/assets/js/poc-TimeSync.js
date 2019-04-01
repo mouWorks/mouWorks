@@ -40,8 +40,14 @@ function readystatechangehandler() {
         $('#receive').text(receive); //Server Side Receive
         $('#sending').text(sending); //time Diff
 
-        $('#transmit').text(transmit); //Server Side RESPOND
+        $('#returned').text(returned); //Client Side Received
         $('#receiving').text(receiving); //Server Side RESPOND
+
+        var diffMs = difference / 1000 + 'ms';
+
+        $('#diff').text(diffMs); //Add the Diff
+
+
 
         console.log(difference);
         // so the server time will be client time + difference
