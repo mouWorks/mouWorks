@@ -40,8 +40,9 @@ $app->get('/choke/text/{text}', function ($request, $response, $args) {
 
 //Choker Interface
 $app->get('/choker', function ($request, $response, $args) {
+//    echo 'eqqwe';exit();
     return $this->view->render($response, 'choker.twig');
-})->setName('index');
+});
 
 //L30 Wedding Album
 $app->get('/leoWedding', function ($request, $response, $args) {
@@ -59,3 +60,12 @@ $app->get('/checkEnv', function()
     echo getenv('TEST_SHIT');
     echo ' ]';
 });
+
+$app->get('/checkdb', Cont\EventController::class . ':connectDB');
+
+//$app->get('/checkDB', function()
+//{
+//    echo 'Now Checking Env Var:[ ';
+//    echo getenv('TEST_SHIT');
+//    echo ' ]';
+//});
