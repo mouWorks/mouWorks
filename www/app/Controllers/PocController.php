@@ -29,7 +29,6 @@ class PocController extends BaseController
           'body'=> array('time'=> $timeStamp)
         );
 
-        //echo $result;
         echo json_encode($result, TRUE);
     }
 
