@@ -6,6 +6,11 @@ class PocController extends BaseController
 {
     public function getServerTime($request, $response, $args)
     {
+        //Allow CORS
+        header('Access-Control-Allow-Origin: http://localhost:8080');
+        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept');
+
         $receive = round(microtime(true) * 1000);
 
         if(($request->getParam('original')) !== null){

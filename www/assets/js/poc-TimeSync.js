@@ -21,7 +21,7 @@ getTimeUrl = 'https://m0u.work/time';
 //     getTimeUrl = '/time';
 // }
 
-$('#version').text('try 30 - Local JS Remote PHP w/CORS allow');
+$('#version').text('try 31 - Local JS Remote PHP w/CORS allow');
 
 request.open("GET", targetUrl + "?original=" + (new Date).getTime());
 request.send();
@@ -142,17 +142,17 @@ var mountAdjustDiff = function(start) {
             clientTime = Date.now();
             //now = originalTime;
             timeDiff = (clientTime-beforeTime)/2; //ClientEnd - Client Begin = 去程
-            serverTime = response.body.time-timeDiff; //ServerTime -
+            serverTime = response.body.time-timeDiff; //ServerTime
             offset = clientTime-serverTime;
 
-            console.log('start:' + start);
+            // console.log('start:' + start);
             console.log('offset:' + offset);
             console.log('timeDiff:' + timeDiff);
 
             adjNew = response.body.time + offset;
             mountTime('#adjNew', adjNew);
 
-            adjustValue = start + offset;
+            adjustValue = response.body.time + timeDiff;
             mountTime('#adj', adjustValue);
         }
     });

@@ -72,17 +72,19 @@
             <div class="countdownbox">
 
                 <span>
-                    <strong>new Date every 1000ms (JS Re-mount)</strong> <br/>
+                    <strong>(系統時間)new Date every 1000ms (JS Re-mount)</strong> <br/>
                     <p id="demo"></p>
 
-                    <strong>Countdown By Sleep1 (JS + 1000)</strong><br/>
+                    <strong>(舊算法)Countdown By Sleep1 (JS + 1000)</strong><br/>
                     <p id="mod"></p>
+                    <p id="modDiff"></p>
 
-                    <strong>Adjust (Start + 1000 + offset) </strong><br/>
-                    <p id="adj"></p>
-
-                    <strong>Adjust2 (ServerTime + offset) </strong><br/>
+                    <strong>(調整算法:Server時間+傳輸時間) (ServerTime + offset) </strong><br/>
                     <p id="adjNew"></p>
+                    <p id="adjNewDiff"></p>
+                    <strong>(對照組: (ServerTime + TimeDiff) </strong><br/>
+
+                    <p id="adj"></p>
 
                 </span>
 
