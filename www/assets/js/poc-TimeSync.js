@@ -8,20 +8,24 @@ request.onreadystatechange = readystatechangehandler;
 
 var host = window.location.hostname;
 
-//ForceRemote
- targetUrl = 'https://m0u.work/getServerTime';
-getTimeUrl = 'https://m0u.work/time';
+// //ForceRemote
+//  targetUrl = 'https://m0u.work/getServerTime';
+// getTimeUrl = 'https://m0u.work/time';
 
 //Local or Remote Server
-// if (host.indexOf('localhost') !== -1) {
-//      targetUrl = 'http://localhost:8080/index.php/getServerTime';
-//     getTimeUrl = 'http://localhost:8080/index.php/time';
-// }else{
-//      targetUrl = '/getServerTime';
-//     getTimeUrl = '/time';
-// }
+if (host.indexOf('localhost') !== -1) {
+    //  targetUrl = 'http://localhost:8080/index.php/getServerTime';
+    // getTimeUrl = 'http://localhost:8080/index.php/time';
 
-$('#version').text('try 31 - Local JS Remote PHP w/CORS allow');
+    //ForceRemote
+     targetUrl = 'https://m0u.work/getServerTime';
+    getTimeUrl = 'https://m0u.work/time';
+}else{
+     targetUrl = '/getServerTime';
+    getTimeUrl = '/time';
+}
+
+$('#version').text('try 32 - Local JS Remote PHP w/CORS allow - W/RealOffset');
 
 request.open("GET", targetUrl + "?original=" + (new Date).getTime());
 request.send();
@@ -130,7 +134,7 @@ var mountAdjustDiff = function(start) {
         return;
     }
 
-    beforeTime = Date.now(); //before send out the Request
+    beforeTime = Date.now(); //before send out the Request //t1
     $.ajax(getTimeUrl, {
         type: 'GET',
         success: function(response) {
@@ -139,21 +143,33 @@ var mountAdjustDiff = function(start) {
             var clientTime, timeDiff, serverTime, offset;
 
             // Get offset
-            clientTime = Date.now();
+            clientTime = Date.now(); //t4
             //now = originalTime;
-            timeDiff = (clientTime-beforeTime)/2; //ClientEnd - Client Begin = 去程
-            serverTime = response.body.time-timeDiff; //ServerTime
-            offset = clientTime-serverTime;
+            timeDiff = (clientTime-beforeTime)/2; //ClientEnd - Client Begin = 去程 t4-t1/2
 
-            // console.log('start:' + start);
-            console.log('offset:' + offset);
-            console.log('timeDiff:' + timeDiff);
+            serverReplyTime = response.body.time; //t3 -> when server echo back
+            serverTimeX = serverReplyTime-timeDiff; //ServerTime
 
+            //serverTimeX should be the same as beforeTime
+            //Offset should / 2
+            offset = clientTime-serverTimeX;
+
+            realOffset = offset / 2;
+
+            // console.log('  offset:' + offset);
+            // console.log('timeDiff:' + timeDiff);
+
+            //ServerTime + Offset
             adjNew = response.body.time + offset;
             mountTime('#adjNew', adjNew);
 
+            //ServerTime + timeDiff
             adjustValue = response.body.time + timeDiff;
             mountTime('#adj', adjustValue);
+
+            //ServerTime + UpdatedOffSet
+            adjustValueRealOffset = response.body.time + realOffset;
+            mountTime('#adjRealOffSet', adjustValueRealOffset);
         }
     });
 }
