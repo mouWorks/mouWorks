@@ -8,16 +8,20 @@ request.onreadystatechange = readystatechangehandler;
 
 var host = window.location.hostname;
 
-//Local or Remote Server
-if (host.indexOf('localhost') !== -1) {
-     targetUrl = 'http://localhost:8080/index.php/getServerTime';
-    getTimeUrl = 'http://localhost:8080/index.php/time';
-}else{
-     targetUrl = '/getServerTime';
-    getTimeUrl = '/time';
-}
+//ForceRemote
+ targetUrl = 'https://m0u.work/getServerTime';
+getTimeUrl = 'https://m0u.work/time';
 
-$('#version').text('try 18');
+//Local or Remote Server
+// if (host.indexOf('localhost') !== -1) {
+//      targetUrl = 'http://localhost:8080/index.php/getServerTime';
+//     getTimeUrl = 'http://localhost:8080/index.php/time';
+// }else{
+//      targetUrl = '/getServerTime';
+//     getTimeUrl = '/time';
+// }
+
+$('#version').text('try 30 - Local JS Remote PHP w/CORS allow');
 
 request.open("GET", targetUrl + "?original=" + (new Date).getTime());
 request.send();
@@ -99,21 +103,17 @@ function JScountdown(interval, location) {
         var current = (new Date).getTime();
         mountTime(location, current); //每次都重新 New 一個
 
-        //2. Adjust
-        mountAdjustDiff(start);
-        //console.log(adjustValue);
+        //after 1000 ms
+        start += 1000; //每次 +1000
 
         //1. Simply cal by 1000 Cal = start + 1000;
-        start += 1000; //每次 +1000
         mountTime('#mod', start);
+
+        //2. Adjust
+        mountAdjustDiff(start);
 
     }, interval);
 }
-
-// function mountAdjustDiff(start){
-//
-//     getTimeDiff(start);
-// }
 
 function sleep(milliseconds) {
     var start = new Date().getTime();
@@ -124,42 +124,38 @@ function sleep(milliseconds) {
     }
 }
 
-// get average
-// var mean = function(array) {
-//     var sum = 0;
-//
-//     array.forEach(function (value) {
-//         sum += value;
-//     });
-//
-//     return sum/array.length;
-// }
-
 var mountAdjustDiff = function(start) {
 
     if(start == 'undefined'){
         return;
     }
 
-    beforeTime = Date.now();
+    beforeTime = Date.now(); //before send out the Request
     $.ajax(getTimeUrl, {
         type: 'GET',
         success: function(response) {
 
             response = JSON.parse(response);
-            var now, timeDiff, serverTime, offset;
-            counter++;
+            var clientTime, timeDiff, serverTime, offset;
 
             // Get offset
-            now = Date.now();
-            timeDiff = (now-beforeTime)/2;
-            serverTime = response.body.time-timeDiff;
-            offset = now-serverTime;
+            clientTime = Date.now();
+            //now = originalTime;
+            timeDiff = (clientTime-beforeTime)/2; //ClientEnd - Client Begin = 去程
+            serverTime = response.body.time-timeDiff; //ServerTime -
+            offset = clientTime-serverTime;
 
-            adjustValue = start + offset + 1000;
+            console.log('start:' + start);
+            console.log('offset:' + offset);
+            console.log('timeDiff:' + timeDiff);
+
+            adjNew = response.body.time + offset;
+            mountTime('#adjNew', adjNew);
+
+            adjustValue = start + offset;
             mountTime('#adj', adjustValue);
         }
     });
 }
 
-JScountdown(interval, '#demo');
+JScountdown(interval, '#demo')
