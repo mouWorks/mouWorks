@@ -1,16 +1,23 @@
+var offsets = [];
+var counter = 0;
+var maxTimes = 10;
+var beforeTime = null;
+
 var request = new XMLHttpRequest();
 request.onreadystatechange = readystatechangehandler;
-// request.open("POST", "http://m0u.work/sync.php", true);
 
 var host = window.location.hostname;
 
+//Local or Remote Server
 if (host.indexOf('localhost') !== -1) {
-    targetUrl = 'http://localhost:8080/index.php/getServerTime';
+     targetUrl = 'http://localhost:8080/index.php/getServerTime';
+    getTimeUrl = 'http://localhost:8080/index.php/time';
 }else{
-    targetUrl = '/getServerTime';
+     targetUrl = '/getServerTime';
+    getTimeUrl = '/time';
 }
 
-$('#version').text('try 8');
+$('#version').text('try 18');
 
 request.open("GET", targetUrl + "?original=" + (new Date).getTime());
 request.send();
@@ -76,8 +83,6 @@ var timeConverter = function(UNIX_timestamp){
     return time;
 }
 
-console.log(oneway);
-
 //掛載時間
 function mountTime(location, text){
     $(location).html(timeConverter(text));
@@ -94,28 +99,21 @@ function JScountdown(interval, location) {
         var current = (new Date).getTime();
         mountTime(location, current); //每次都重新 New 一個
 
+        //2. Adjust
+        mountAdjustDiff(start);
+        //console.log(adjustValue);
+
         //1. Simply cal by 1000 Cal = start + 1000;
         start += 1000; //每次 +1000
         mountTime('#mod', start);
 
-
-        // adjustValue = getAdjustVal();
-        // console.log(adjustValue);
-
-
     }, interval);
 }
 
-function getAdjustVal(){
-
-
-
-
-
-
-
-    return adjustValue;
-}
+// function mountAdjustDiff(start){
+//
+//     getTimeDiff(start);
+// }
 
 function sleep(milliseconds) {
     var start = new Date().getTime();
@@ -126,7 +124,42 @@ function sleep(milliseconds) {
     }
 }
 
+// get average
+// var mean = function(array) {
+//     var sum = 0;
+//
+//     array.forEach(function (value) {
+//         sum += value;
+//     });
+//
+//     return sum/array.length;
+// }
 
-console.log('now try 8');
+var mountAdjustDiff = function(start) {
+
+    if(start == 'undefined'){
+        return;
+    }
+
+    beforeTime = Date.now();
+    $.ajax(getTimeUrl, {
+        type: 'GET',
+        success: function(response) {
+
+            response = JSON.parse(response);
+            var now, timeDiff, serverTime, offset;
+            counter++;
+
+            // Get offset
+            now = Date.now();
+            timeDiff = (now-beforeTime)/2;
+            serverTime = response.body.time-timeDiff;
+            offset = now-serverTime;
+
+            adjustValue = start + offset + 1000;
+            mountTime('#adj', adjustValue);
+        }
+    });
+}
 
 JScountdown(interval, '#demo');
