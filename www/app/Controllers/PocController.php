@@ -22,9 +22,11 @@ class PocController extends BaseController
      */
     public function getTime(){
 
+        $timeStamp = round(microtime(true) * 1000);
+
         $result = array(
           'status'=> 200,
-          'body'=> array('time'=> time())
+          'body'=> array('time'=> $timeStamp)
         );
 
         //echo $result;

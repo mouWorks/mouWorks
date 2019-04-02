@@ -41,7 +41,10 @@ var getTimeDiff = function() {
             serverTime = response.body.time-timeDiff;
             offset = now-serverTime;
 
-            console.log(offset);
+            console.log('now@Clinet|' + now);
+            console.log('serverTime|' + serverTime);
+            console.log('_Time_Diff|' + offset);
+            console.log('---------------------');
 
             // Push to array
             offsets.push(offset)
