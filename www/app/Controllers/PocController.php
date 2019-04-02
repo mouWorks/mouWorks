@@ -16,4 +16,19 @@ class PocController extends BaseController
         echo $receive . '|';
         echo round(microtime(true) * 1000);
     }
+
+    /**
+     * Just a simple getTime
+     */
+    public function getTime(){
+
+        $result = array(
+          'status'=> 200,
+          'body'=> array('time'=> time())
+        );
+
+        //echo $result;
+        echo json_encode($result, TRUE);
+    }
+
 }

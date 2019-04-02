@@ -17,8 +17,11 @@ request.open("GET", targetUrl + "?original=" + (new Date).getTime());
 request.send();
 
 function readystatechangehandler() {
-    var returned = (new Date).getTime();
+
     if (request.readyState === 4 && request.status === 200) {
+
+        //Move Inside here
+        var returned = (new Date).getTime();
 
         var timestamp = request.responseText.split('|');
 
@@ -47,6 +50,8 @@ function readystatechangehandler() {
         // var diffMs = difference / 1000 + 'ms'; //Not sure about this
 
         $('#diff').text(diffMs); //Add the Diff
+
+        $('#oneway').text(oneway);
 
 
 

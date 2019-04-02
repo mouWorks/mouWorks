@@ -70,10 +70,18 @@ $app->get('/checkdb', Cont\EventController::class . ':connectDB');
 //    echo ' ]';
 //});
 
-
 //Testing Time Sync
 $app->get('/getServerTime', Cont\PocController::class . ':getServerTime');
 
-$app->get('/checkTimeSync', function ($request, $response, $args) {
+$app->get('/timeSync', function ($request, $response, $args) {
     return $this->view->render($response, '/poc/checkTimeSync.twig');
+});
+
+
+
+//2nd
+$app->get('/time', Cont\PocController::class . ':getTime');
+
+$app->get('/time2', function ($request, $response, $args) {
+    return $this->view->render($response, '/poc/checkTimeSync2.twig');
 });

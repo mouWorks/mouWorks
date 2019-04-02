@@ -23,19 +23,19 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>JS Client 開始(GET Request)</td>
+                    <td>JS Client 開始(GET Request) (t1)</td>
                     <td id="original"></td>
                     <td> N/A </td>
                     <td> N/A </td>
                 </tr>
                 <tr>
-                    <td>Server 收到&回送</td>
+                    <td>Server 收到&回送 (t2,t3)</td>
                     <td id="receive"></td>
                     <td id="sending"></td>
                     <td>去程時間差</td>
                 </tr>
                 <tr>
-                    <td>Client 收到</td>
+                    <td>Client 收到 (t4)</td>
                     <td id="returned"></td>
                     <td id="receiving"></td>
                     <td>回程時間差</td>
@@ -43,11 +43,23 @@
                 </tbody>
             </table>
             <hr/>
-            <div>平均時間差:
-                <strong><span id="diff"></span></strong>
-                <p>
-                   公式:(去程 - 回程) / 2
-                </p>
+            <div>
+                <span>
+                Diff:
+                    <strong><span id="diff"></span></strong>
+                    <p>
+                       公式:(去程 - 平均)
+                    </p>
+                </span>
+                <span>
+                Oneway(平均時間差):
+                    <strong><span id="oneway"></span></strong>
+                    <p>
+                       公式:(去程時間+回程時間) / 2
+                    </p>
+                </span>
+
+
 
             </div>
 
