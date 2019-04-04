@@ -37,7 +37,6 @@ class BaseController
     public function toss2Slack($data, $channel = SLACK_CHANNEL_WEBHOOKURL)
     {
         try {
-
             $outputFormat = [
                 "text"=> json_encode($data, JSON_UNESCAPED_UNICODE) //Need JSON_UNESCAPED_UNICODE to remain chinese log
             ];

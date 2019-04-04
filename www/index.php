@@ -21,8 +21,6 @@ $config = require_once '_conf/config.php';
 
 $c = new \Slim\Container($config);
 
-
-
 $app = new Slim\App($c);
 
 // Twig Related
@@ -45,7 +43,7 @@ $container['view'] = function ($container) {
 //Override the default Not Found Handler
 $container['notFoundHandler'] = function ($c) {
     return function ($request, $response) use ($c) {
-        return $c['view']->render($response->withStatus(404), '/4041.html', [
+        return $c['view']->render($response->withStatus(404), '/404.html', [
             "desc" => "Well Your page is not found. Sorry."
         ]);
     };
@@ -54,10 +52,9 @@ $container['notFoundHandler'] = function ($c) {
 //Define Error here
 $container['errorHandler'] = function ($c) {
     return function ($request, $response, $exception) use ($c) {
-
         //Maybe toss to slack here
-        $base = new \App\Controllers\BaseController();
-        $base->toss2Slack($exception);
+//        $base = new \App\Controllers\BaseController();
+//        $base->toss2Slack($exception);
 
         return $c['view']->render($response->withStatus(500), '/500.html', [
             "desc" => "Well Your page is not found. Sorry."
