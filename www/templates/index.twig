@@ -1,4 +1,44 @@
+<head>
+    <link href="/assets/css/bootstrap-ubuntuStyle.min.css" rel="stylesheet">
+    <link rel="icon" href="/assets/img/choke.png">
+</head>
+
 {% block body %}
-    <h1>Mou Work</h1>
-    <h2>施工中</h2>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-1"></div>
+
+            <div class="col-10">
+                <h2>MouWorks</h2>
+                <hr/>
+
+                <h4><code>Code POC</code></h4>
+                <p>
+                    <a href="{{ constant('BASE_PATH') }}/timeSync" title="時間測試">TimeSync</a>
+                    <br/>
+                </p>
+                <hr/>
+                <h4>other</h4>
+                <a href="{{ constant('BASE_PATH') }}/blues" title="Blues Events">Blues Events Taipei</a>
+            </div>
+
+        </div><!-- Middle box-->
+
+    </div><!--row-->
+    </div><!--container-->
+
+    <!-- Load JS and stuff -->
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script>
+    </script>
+
+    {#<script src="/assets/js/poc-TimeSync2.js"></script>#}
+
 {% endblock %}
+
+

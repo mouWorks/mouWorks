@@ -1,9 +1,15 @@
 <?php
 
 use \App\Controllers as Cont;
+use \App\Components as Comp;
+
+if (strpos($_SERVER['SERVER_NAME'], 'localhost') !== false) {
+    define('BASE_PATH', 'localhost:8080/index.php');
+}else{
+    define('BASE_PATH', '');
+}
 
 $app->get('/test', Cont\BluesController::class . ':getList');
-
 
 // Render Twig template in route
 $app->get('/hello/{name}', function ($request, $response, $args) {
@@ -19,7 +25,11 @@ $app->get('/hello/{name}', function ($request, $response, $args) {
 //    ]);
 //})->setName('index');
 
-$app->get('/', Cont\IndexController::class . ':randWords');
+//$app->get('/', Cont\IndexController::class . ':randWords');
+
+$app->get('/', function ($request, $response, $args) {
+    return $this->view->render($response, '/index.twig');
+});
 
 $app->get('/blues', Cont\BluesController::class . ':getCoverPage');
 
@@ -48,7 +58,6 @@ $app->get('/choker', function ($request, $response, $args) {
 $app->get('/leoWedding', function ($request, $response, $args) {
     return $this->view->render($response, 'leowedding.twig');
 });
-
 
 
 $app->get('/checkConfig', Cont\BaseController::class . ':checkData');
@@ -87,4 +96,46 @@ $app->get('/timeSync', function ($request, $response, $args) {
 //2nd
 $app->get('/time2', function ($request, $response, $args) {
     return $this->view->render($response, '/poc/checkTimeSync2.twig');
+});
+
+
+
+//M1GA - JobSearch Project
+
+//Display EntryPage - Explain && Select Char
+$app->get('/m1ga', Cont\JobSearchController::class . ':index');
+
+//Display SelectionPage
+$app->get('/m1ga/{questionNumber}', function ($request, $response, $args) {
+    $pageName = Comp\M1GAComp::getQuestionTwig($args['questionNumber']);
+    return $this->view->render($response, "/m1ga/{$pageName}.twig");
+});
+
+//1. Char Page (Rookie/Senior)
+//$app->get('/m1ga/q1/{status}', Cont\JobSearchController::class . ':index');
+
+//Questions Page
+//1. Select User
+//2. Select JobType
+//3. Select Pay Range
+//4. Select Quality Index
+$app->get('/m1ga/question/{number}/{answer}', function ($request, $response, $args) {
+    $jS  = new Cont\JobSearchController();
+    $jS->showQuestion($args['number'], $args['answer']);
+});
+
+//
+
+//$app->get('/jobSearch', Cont\JobSearchController::class . ':query');
+
+
+$app->get('/m1ga/jobSearch/[{queryString}]', function ($request, $response, $args) {
+
+    $jS  = new Cont\JobSearchController();
+
+    $queryString = '';
+    if(isset($args['queryString'])){
+        $queryString = $args['queryString'];
+    }
+    $jS->query($queryString);
 });
