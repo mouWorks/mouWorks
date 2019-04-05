@@ -80,11 +80,9 @@ $app->get('/checkdb', Cont\EventController::class . ':connectDB');
 //});
 
 
-
 //POC - TimeSync Test
 //Simple Echo time
 $app->get('/time', Cont\PocController::class . ':getTime');
-
 
 //Testing Time Sync
 $app->get('/getServerTime', Cont\PocController::class . ':getServerTime');
@@ -96,46 +94,4 @@ $app->get('/timeSync', function ($request, $response, $args) {
 //2nd
 $app->get('/time2', function ($request, $response, $args) {
     return $this->view->render($response, '/poc/checkTimeSync2.twig');
-});
-
-
-
-//M1GA - JobSearch Project
-
-//Display EntryPage - Explain && Select Char
-$app->get('/m1ga', Cont\JobSearchController::class . ':index');
-
-//Display SelectionPage
-$app->get('/m1ga/{questionNumber}', function ($request, $response, $args) {
-    $pageName = Comp\M1GAComp::getQuestionTwig($args['questionNumber']);
-    return $this->view->render($response, "/m1ga/{$pageName}.twig");
-});
-
-//1. Char Page (Rookie/Senior)
-//$app->get('/m1ga/q1/{status}', Cont\JobSearchController::class . ':index');
-
-//Questions Page
-//1. Select User
-//2. Select JobType
-//3. Select Pay Range
-//4. Select Quality Index
-$app->get('/m1ga/question/{number}/{answer}', function ($request, $response, $args) {
-    $jS  = new Cont\JobSearchController();
-    $jS->showQuestion($args['number'], $args['answer']);
-});
-
-//
-
-//$app->get('/jobSearch', Cont\JobSearchController::class . ':query');
-
-
-$app->get('/m1ga/jobSearch/[{queryString}]', function ($request, $response, $args) {
-
-    $jS  = new Cont\JobSearchController();
-
-    $queryString = '';
-    if(isset($args['queryString'])){
-        $queryString = $args['queryString'];
-    }
-    $jS->query($queryString);
 });
