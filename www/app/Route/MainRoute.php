@@ -89,14 +89,22 @@ $app->get('/time2', function ($request, $response, $args) {
     return $this->view->render($response, '/poc/checkTimeSync2.twig');
 });
 
-//Debug Purpose - Only in Local Mode
+//POC - Class Monitor
+$app->get('/student/{name}', function ($request, $response, $args) {
+    $data = ['name' => $args['name']];
+
+    return $this->view->render($response,
+        '/poc/displayClass.twig', $data);
+});
+
+$app->get('/teacher', function ($request, $response, $args) {
+    return $this->view->render($response, '/poc/monitorClass.twig');
+});
+
+//FIXME - DEBUG Purpose - Only in Local Mode
 if(ENV == 'LOCAL'){
     $app->get('/info', function ($request, $response, $args) {
         phpinfo();
 //        return $this->view->render($response, '/poc/checkTimeSync.twig');
     });
-
-
-
-
 }//endif
