@@ -103,7 +103,7 @@ class BaseController
         $dsn = "mysql:host=".$serverName.";dbname=".$dbname.";port=".$serverPort;
         $conn = new \PDO($dsn, $username, $password);
 
-        foreach ($conn->query('SELECT * from dance') as $row) {
+        foreach ($conn->query('SELECT * from danceStyle') as $row) {
             print_r($row); //你可以用 echo($GLOBAL); 来看到这些值
         }
 
