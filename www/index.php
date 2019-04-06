@@ -1,6 +1,5 @@
 <?php
 // index.php - Main entrance for files.
-
 define('DIR_VENDOR', __DIR__.'/vendor/');
 define('ENV_PATH', __DIR__.'/_conf/');
 
@@ -40,27 +39,35 @@ $container['view'] = function ($container) {
     return $view;
 };
 
-//Override the default Not Found Handler
-$container['notFoundHandler'] = function ($c) {
-    return function ($request, $response) use ($c) {
-        return $c['view']->render($response->withStatus(404), '/404.html', [
-            "desc" => "Well Your page is not found. Sorry."
-        ]);
+//Display Error Template when in PROD env
+if(ENV == 'PROD'){
+    //Override the default Not Found Handler
+    $container['notFoundHandler'] = function ($c) {
+        return function ($request, $response) use ($c) {
+            return $c['view']->render($response->withStatus(404), '/404.html', [
+                "desc" => "Well Your page is not found. Sorry."
+            ]);
+        };
     };
-};
 
 //Define Error here
-$container['errorHandler'] = function ($c) {
-    return function ($request, $response, $exception) use ($c) {
-        //Maybe toss to slack here
-//        $base = new \App\Controllers\BaseController();
-//        $base->toss2Slack($exception);
+    $container['errorHandler'] = function ($c) {
+        return function ($request, $response, $exception) use ($c) {
 
-        return $c['view']->render($response->withStatus(500), '/500.html', [
-            "desc" => "Well Your page is not found. Sorry."
-        ]);
+            //Maybe toss to slack here
+            $base = new \App\Controllers\BaseController();
+            $base->toss2Slack($exception);
+
+            return $c['view']->render($response->withStatus(500), '/500.html', [
+                "desc" => "Well Something Wrong with Server, Sorry"
+            ]);
+        };
     };
-};
+}//endif
+
+
+
+
 
 /*
  * Load Routes

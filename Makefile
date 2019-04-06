@@ -1,4 +1,6 @@
 #!/usr/bin/make -f
+include .env
+export
 build: container-build vendor start
 	@echo ">>> Build Container and Vendor"
 container-build:
@@ -41,3 +43,16 @@ vendor:
 vendor-remove:
 	@echo ">>> Remove Vendor package"
 	rm -rf www/vendor
+
+# For checking DB internal IP
+get-db-ip:
+	@echo ">>> Getting DB IP"
+	docker inspect mouworks_mariadb_1 | grep IPAddress
+
+db_backup:
+	@echo ">>> backing up the file"
+	docker exec mouworks_mariadb_1 /usr/bin/mysqldump -u root --password=${DB_PASS} ${DB_NAME} > ./sql/backup.sql
+
+db_restore:
+	@echo ">>> Restoring DB data"
+	cat ./sql/backup.sql | docker exec -i mouworks_mariadb_1 /usr/bin/mysql -u root --password=${DB_PASS} ${DB_NAME}

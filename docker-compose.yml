@@ -18,14 +18,19 @@ services:
       - "8080:80"
     volumes:
       - ./www/:/var/www/html/
+    links:
+      - mariadb
   mariadb:
-    image: mariadb:10.3
+    build: './DockerConf/mariadb/'
     networks:
       - backend
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
     ports:
       - "3306:3306"
+#    volumes:
+#       - ./sql:/docker-entrypoint-initdb.d
 networks:
   frontend:
   backend:

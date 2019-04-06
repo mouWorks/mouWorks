@@ -91,4 +91,24 @@ class BaseController
         $this->toss2Slack($data);
     }
 
+    //Not yet complete
+    public function connectDB(){
+
+        $serverName = 'mariadb'; //Here we use Docker-compose name (defined at Docker-Compose)
+        $username = "root";
+        $password = DB_PASS;
+        $dbname = DB_NAME;
+
+        $serverPort = 3306;
+        $dsn = "mysql:host=".$serverName.";dbname=".$dbname.";port=".$serverPort;
+        $conn = new \PDO($dsn, $username, $password);
+
+        foreach ($conn->query('SELECT * from dance') as $row) {
+            print_r($row); //你可以用 echo($GLOBAL); 来看到这些值
+        }
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+    }
 }//end of Class

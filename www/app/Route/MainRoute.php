@@ -1,13 +1,6 @@
 <?php
 
 use \App\Controllers as Cont;
-use \App\Components as Comp;
-
-if (strpos($_SERVER['SERVER_NAME'], 'localhost') !== false) {
-    define('BASE_PATH', 'localhost:8080/index.php');
-}else{
-    define('BASE_PATH', '');
-}
 
 $app->get('/test', Cont\BluesController::class . ':getList');
 
@@ -95,3 +88,15 @@ $app->get('/timeSync', function ($request, $response, $args) {
 $app->get('/time2', function ($request, $response, $args) {
     return $this->view->render($response, '/poc/checkTimeSync2.twig');
 });
+
+//Debug Purpose - Only in Local Mode
+if(ENV == 'LOCAL'){
+    $app->get('/info', function ($request, $response, $args) {
+        phpinfo();
+//        return $this->view->render($response, '/poc/checkTimeSync.twig');
+    });
+
+
+
+
+}//endif

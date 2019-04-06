@@ -4,7 +4,9 @@
 $envVars = [
     'LINE_BEARER',
     'CHATROOM_ID',
-    'SLACK_CHANNEL_WEBHOOKURL'
+    'SLACK_CHANNEL_WEBHOOKURL',
+    'DB_NAME',
+    'DB_PASS'
 ];
 //Loop thru
 foreach($envVars as $envName){

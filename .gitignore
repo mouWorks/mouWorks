@@ -35,3 +35,5 @@ _conf.php
 *.DS_Store
 
 www/templates/choke.html
+
+.env
