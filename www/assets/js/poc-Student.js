@@ -3,7 +3,7 @@
 $( document ).ready(function() {
     var studentName = $('#studentName').html();
 
-    console.log('1140');
+    console.log('1141');
 
     /**
      * Fetch student status
@@ -17,20 +17,22 @@ $( document ).ready(function() {
 
         var webSocketUri = 'ws://127.0.0.1:8282';
 
-        // var ws = new WebSocket('ws://127.0.0.1:8282');
+        var statusString = studentName + 'is now:' + status;
 
-        init();
-       // var output;
-        function init() {
-         //   output = document.getElementById("output");
-            testWebSocket();
-        }
-        function testWebSocket() {
+        // var ws = new WebSocket('ws://127.0.0.1:8282');
+        testWebSocket(statusString);
+       //  init();
+       // // var output;
+       //  function init() {
+       //   //   output = document.getElementById("output");
+       //      testWebSocket();
+       //  }
+        function testWebSocket(statusString) {
 
             conn = new WebSocket(webSocketUri);
 
             conn.onmessage = function(e){ console.log(e.data); };
-            conn.onopen = () => conn.send('yolo');
+            conn.onopen = () => conn.send(statusString);
 
             //websocket.send(studentName);
 
