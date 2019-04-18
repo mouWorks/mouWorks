@@ -111,4 +111,22 @@ class BaseController
             die("Connection failed: " . $conn->connect_error);
         }
     }
+
+    /**
+     * DB Connect Instance
+     * @return \PDO
+     */
+    public function db_conn()
+    {
+        $serverName = 'mariadb'; //Here we use Docker-compose name (defined at Docker-Compose)
+        $username = "root";
+        $password = DB_PASS;
+        $dbname = DB_NAME;
+
+        $serverPort = 3306;
+        $dsn = "mysql:host=".$serverName.";dbname=".$dbname.";port=".$serverPort;
+        return new \PDO($dsn, $username, $password);
+    }
+
+
 }//end of Class

@@ -19,7 +19,21 @@ class BluesController extends EventController
 
     public function getList()
     {
-        echo 'Getting Blues Event List';
+//        echo 'Getting Blues Event List';
+
+        $db = $this->db_conn();
+
+        $sth = $db->prepare('SELECT * FROM danceStyle');
+        $sth->execute();
+
+        $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
+
+        echo '幾種風格的舞 <br/>';
+
+        foreach($result as $row){
+            echo 'style: ' . $row['style'] . ' , 中文解釋: ' . $row['desc_chinese'] . '<br/>';
+        }
+
     }
 
     public function getEvent()
@@ -28,7 +42,6 @@ class BluesController extends EventController
     }
 
     public function getCoverPage(Request $request, Response $response){
-
 
         //Here config the page Element
         $pageContent = array(
