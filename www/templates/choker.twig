@@ -27,7 +27,7 @@
     </div>
     <div class="jumbotron">
         <h1>L30. Choker</h1>
-        <h6></h6>
+        <h6 class="version"></h6>
         <p>
             <div class="btn-group btn-group-toggle textType " data-toggle="buttons">
                 <label class="btn btn-outline-primary active">
@@ -54,6 +54,56 @@
             </div>
         </p>
     </div>
+
+    <hr>
+
+    <div class="row betelGenerator">
+        <div class="col-6">
+
+            <div class="card">
+                <div classs="card-body">
+                        <textarea id="origin" name="origin" type="text" class="form-control" placeholder="輸入一段話讓里奧哥幫你講..."
+                                  required style="border:none; height:150px; resize:none"></textarea>
+                    <button class="btn btn-success" id="enter" type="button" style="Float: right; margin: 5px">
+                            <span id="loaderDiv" class="spinner-border spinner-border-sm" role="status"
+                                  style="display:none" aria-hidden="true"></span>
+                        生成</button>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 10px">
+                <div classs="card-body" style="height:198px; ">
+                    <div style="height:150px; padding:6px 12px 6px 12px">
+                        <p id="result"></p>
+                    </div>
+
+                    <button class="btn btn-secondary" id="copy" type="button" style="Float: right; margin: 5px" disabled="true">
+                        <i class="far fa-copy"></i>
+                        <span id="copied" style="display:none">已複製</span>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6">
+            <canvas id="mycanvas" style="border:1px solid rgba(0,0,0,.125); border-radius: .25rem; z-index:1"
+                    width="538" height="406">
+            </canvas>
+            <button class="btn btn-secondary" id="save" type="button"
+                    style="z-index:2; position: absolute; right: 20px; bottom: 11px" disabled="true">
+                <i class="data-transfer-download"></i>
+            </button>
+        </div>
+        <div class="col-6">
+            <p></p>
+            <h6>Inspired by
+                <a href="https://tsaibro-probetelnut-generator.herokuapp.com/" target="_blank">貝才哥專業檳榔攤產生器</a>
+            </h6>
+        </div>
+    </div>
+
+    <hr>
 
     <div class="row marketing">
         <div class="col-lg-6">

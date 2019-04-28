@@ -144,7 +144,7 @@ class ChokeController extends BaseController
      * @param $text
      * @return string
      */
-    private function jiebaText($text)
+    public function jiebaText($text)
     {
         ini_set('memory_limit', '2048M'); //it's fucking huge
 

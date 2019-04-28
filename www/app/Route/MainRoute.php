@@ -35,11 +35,21 @@ $app->get('/swing', function()
     echo '<h1>Swing thing</h1>';
 });
 
+//For choking
 $app->post('/chokeText', function ($request, $response, $args) {
 
     $data = $request->getParsedBody();
     $choke  = new Cont\ChokeController();
     $choke->Text($data['textType'], $data['text']);
+});
+
+//Return Jieba-ed Text - later for generating the page
+$app->post('/jiebaText', function ($request, $response, $args) {
+
+    $data = $request->getParsedBody();
+    $choke  = new Cont\ChokeController();
+
+    return json_encode($choke->jiebaText($data['text']));
 });
 
 //Choker Interface
@@ -52,7 +62,6 @@ $app->get('/choker', function ($request, $response, $args) {
 $app->get('/leoWedding', function ($request, $response, $args) {
     return $this->view->render($response, 'leowedding.twig');
 });
-
 
 $app->get('/checkConfig', Cont\BaseController::class . ':checkData');
 $app->get('/checkSlack', Cont\BaseController::class . ':checkSlack');

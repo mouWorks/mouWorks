@@ -5,7 +5,7 @@ var chokeString = '';
 //DOC Ready
 $( document ).ready(function() {
 
-    $('h6').html('0011');
+    $('h6 > .version').html('0011');
 
     $('.choke').on('click', function(){
 
