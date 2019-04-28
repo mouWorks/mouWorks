@@ -35,10 +35,10 @@ $app->get('/swing', function()
     echo '<h1>Swing thing</h1>';
 });
 
-$app->get('/choke/text/{text}', function ($request, $response, $args) {
+$app->get('/choke/text/{textType}/{text}', function ($request, $response, $args) {
 
     $choke  = new Cont\ChokeController();
-    $choke->Text($args['text']);
+    $choke->Text($args['textType'], $args['text']);
 });
 
 //Choker Interface
@@ -64,6 +64,9 @@ $app->get('/checkEnv', function()
 });
 
 $app->get('/checkdb', Cont\EventController::class . ':connectDB');
+
+
+$app->get('/tryJieba', Cont\ChokeController::class . ':tryJieba');
 
 //$app->get('/checkDB', function()
 //{

@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use Fukuball\Jieba\Jieba;
+use Fukuball\Jieba\Finalseg;
+
 class ChokeController extends BaseController
 {
     //For LINE MESSAGING API
@@ -31,7 +34,25 @@ class ChokeController extends BaseController
      *
      * @param string $text
      */
-    public function Text($text = '可能是地表最強工程師'){
+    public function Text($textType, $text = '可能是地表最強工程師'){
+
+        switch($textType){
+            case 'bold':
+                $text = '*' . $text . '*';
+                break;
+            case 'italic':
+                $text = '_' . $text . '_';
+                break;
+            case 'highlight':
+                $text = "`". $text . "`";
+                break;
+            case 'betel':
+                $text = $this->jiebaText($text);
+                break;
+            case 'normal':
+            default:
+                break;
+        }
 
         $msg = $this->_buildMsg(self::TYPE_TEXT, $text);
         $this->_curlPostLineChatRoom(CHATROOM_ID, LINE_BEARER, $msg);
@@ -114,5 +135,32 @@ class ChokeController extends BaseController
         }
 
         curl_close ($ch);
+    }
+
+
+    /**
+     * 使用 *財哥風格*
+     *
+     * @param $text
+     * @return string
+     */
+    private function jiebaText($text)
+    {
+        ini_set('memory_limit', '2048M'); //it's fucking huge
+
+        Jieba::init(array('mode'=>'default','dict'=>'big'));
+        Finalseg::init();
+
+        $seg_list = Jieba::cut($text);
+        return implode("...", $seg_list);
+    }
+
+    /**
+     * 財哥風格 - /tryJieba to try
+     */
+    public function tryJieba(){
+
+        $data = $this->jiebaText("我想要打Playstation 4");
+        self::dd($data);
     }
 }

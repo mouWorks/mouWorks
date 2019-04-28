@@ -5,7 +5,8 @@
     "google/apiclient": "^2.0",
     "guzzlehttp/guzzle": "^6.3",
     "linecorp/line-bot-sdk": "^3.6",
-    "vlucas/phpdotenv": "^3.3"
+    "vlucas/phpdotenv": "^3.3",
+    "fukuball/jieba-php": "dev-master"
   },
   "autoload": {
     "psr-0": { "": "www/"},
