@@ -52,6 +52,14 @@ $app->post('/jiebaText', function ($request, $response, $args) {
     return json_encode($choke->jiebaText($data['text']));
 });
 
+//Return Jieba-ed Text - later for generating the page
+$app->get('/tryJieba', function ($request, $response, $args) {
+
+    $choke  = new Cont\ChokeController();
+    return $choke->tryJieba();
+});
+
+
 //Choker Interface
 $app->get('/choker', function ($request, $response, $args) {
 //    echo 'eqqwe';exit();
