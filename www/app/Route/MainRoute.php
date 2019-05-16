@@ -112,6 +112,12 @@ $app->get('/teacher', function ($request, $response, $args) {
     return $this->view->render($response, '/poc/monitorClass.twig');
 });
 
+//POC - Canvas Fingerprint
+$app->get('/fp', function ($request, $response, $args) {
+    return $this->view->render($response, '/poc/canvasFingerprint.twig');
+});
+
+
 //FIXME - DEBUG Purpose - Only in Local Mode
 if(ENV == 'LOCAL'){
     $app->get('/info', function ($request, $response, $args) {

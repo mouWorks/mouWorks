@@ -5,32 +5,31 @@
 
 {% block body %}
     <div class="container">
-
         <div class="row">
             <div class="col-1"></div>
 
             <div class="col-10">
-                <h2>MouWorks</h2>
+                <h2>@MouWorks - Canvas FingerPrint</h2>
                 <hr/>
+                <span class="">
+                    <button class="btn btn-success btn get_print" type="button">Get Fingerprint</button>
+                </span>
 
-                <h4><code>Code POC</code></h4>
-                <p>
-                    <a href="{{ constant('BASE_PATH') }}timeSync" title="時間測試">TimeSync</a>
-                    <br/>
-                    <a href="{{ constant('BASE_PATH') }}fp" title="指紋測試">Canvas Fingerprint</a>
-                    <br/>
-                </p>
+
                 <hr/>
-                <h4>other</h4>
-                <a href="{{ constant('BASE_PATH') }}blues" title="Blues Events">Blues Events Taipei</a>
-            </div>
+                <span id="result"></span>
 
-        </div><!-- Middle box-->
+                </div>
 
-    </div><!--row-->
+            </div><!-- Middle box-->
+
+        </div><!--row-->
     </div><!--container-->
 
     <!-- Load JS and stuff -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.0.6/fingerprint2.js">
+
+    </script>
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -39,7 +38,7 @@
     <script>
     </script>
 
-    {#<script src="/assets/js/poc-TimeSync2.js"></script>#}
+    <script src="/assets/js/poc-canvasFingerprint.js"></script>
 
 {% endblock %}
 
