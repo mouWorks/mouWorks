@@ -1,6 +1,8 @@
 #!/usr/bin/make -f
 include .env
 export
+BRANCH := $(shell git name-rev --name-only HEAD)
+
 build: container-build vendor start
 	@echo ">>> Build Container and Vendor"
 container-build:
@@ -56,3 +58,11 @@ db_backup:
 db_restore:
 	@echo ">>> Restoring DB data"
 	cat ./sql/backup.sql | docker exec -i mouworks_mariadb_1 /usr/bin/mysql -u root --password=${DB_PASS} ${DB_NAME}
+
+pull:
+	@echo ">>> Pull Code on Current branch [$(BRANCH)]"
+	git pull origin $(BRANCH) --rebase
+
+push:
+	@echo ">>> Current branch [$(BRANCH)] Pushing Code"
+	git push origin $(BRANCH)
