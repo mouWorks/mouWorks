@@ -4,21 +4,28 @@ var chokeString = '';
 //DOC Ready
 $( document ).ready(function() {
 
-    $('.version').html('0024');
+    $('.version').html('0033');
 
     $('.get_print').on('click', function(){
 
         var options =
             {fonts: {extendedJsFonts: true},
                 excludes: {
-                userAgent: true,
+                userAgent: true
                 // deviceMemory: true,
                 // hardwareConcurrency: true,
-                // plugins: true
+                // plugins: true,
+                // audio: true,
+                // enumerateDevices: true,
+                //     canvas: true,
+                //     webgl: true,
+                //     fonts: true,
+                //     webglVendorAndRenderer: true
+
             }
         };
 
-        Fingerprint2.get(function (components) {
+        Fingerprint2.get(options, function (components) {
 
             console.table(components) // an array of components: {key: ..., value: ...}
 
