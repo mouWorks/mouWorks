@@ -4,12 +4,18 @@ var chokeString = '';
 //DOC Ready
 $( document ).ready(function() {
 
-    $('.version').html('0023');
+    $('.version').html('0024');
 
     $('.get_print').on('click', function(){
 
         var options =
-            {fonts: {extendedJsFonts: true}, excludes: {userAgent: true}
+            {fonts: {extendedJsFonts: true},
+                excludes: {
+                userAgent: true,
+                // deviceMemory: true,
+                // hardwareConcurrency: true,
+                // plugins: true
+            }
         };
 
         Fingerprint2.get(function (components) {
@@ -37,9 +43,8 @@ $( document ).ready(function() {
             table += '<tr><td>' + data.key + '</td><td>' + data.value + '</td></tr>';
         });
         table += '</table>';
-        $('.myelement').html(table);
 
-        $('#result').html(table);
+        $('#detail').html(table);
     }
 
 });
