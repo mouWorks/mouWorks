@@ -4,7 +4,7 @@ var chokeString = '';
 //DOC Ready
 $( document ).ready(function() {
 
-    $('.version').html('0033');
+    $('.version').html('0034');
 
     $('.get_print').on('click', function(){
 
@@ -26,7 +26,7 @@ $( document ).ready(function() {
                 // }
         };
 
-        Fingerprint2.get(options, function (components) {
+        Fingerprint2.get(function (components) {
 
             console.table(components) // an array of components: {key: ..., value: ...}
 
