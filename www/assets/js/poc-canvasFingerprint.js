@@ -1,43 +1,26 @@
 'use strict';
-var chokeString = '';
+var fingerprint = ''; //Make it Global
 
 //DOC Ready
 $( document ).ready(function() {
 
-    $('.version').html('0034');
+    $('.version').html('0059');
 
     $('.get_print').on('click', function(){
 
-        var options =
-            {
-                // fonts: {extendedJsFonts: true},
-                // excludes: {
-                // userAgent: true
-                // // deviceMemory: true,
-                // // hardwareConcurrency: true,
-                // // plugins: true,
-                // // audio: true,
-                // // enumerateDevices: true,
-                // //     canvas: true,
-                // //     webgl: true,
-                // //     fonts: true,
-                // //     webglVendorAndRenderer: true
-                //
-                // }
-        };
+        console.log(fingerprint);
 
-        Fingerprint2.get(function (components) {
-
-            console.table(components) // an array of components: {key: ..., value: ...}
-
-            var murmur = Fingerprint2.x64hash128(components.map(function (pair) { return pair.value }).join(), 200)
-            mountResult(murmur);
-
-            //List all the diff
-            mountDetail(components);
-
-        })
+        mountResult(fingerprint);
     });
+
+
+    Fingerprint2.get(function (components) {
+
+        //這邊一但 Doc.Ready 就開始跑, 跑完就 assign 給 global fingerprint
+        //如果要 return 寫法, 則需要用 async 之類的擋住, 讓他算完再 return
+
+        fingerprint = Fingerprint2.x64hash128(components.map(function (pair) { return pair.value }).join(), 200)
+    })
 
     function mountResult(string) {
         $('#result').text(string);
