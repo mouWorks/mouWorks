@@ -37,3 +37,6 @@ _conf.php
 www/templates/choke.html
 
 .env
+
+# DB Migration Config
+phinx.yml
