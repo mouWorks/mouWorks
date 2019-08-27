@@ -10,9 +10,10 @@ container-build:
 	docker-compose build --parallel
 rebuild: stop destroy build start
 	@echo ">>> Rebuild the whole process"
-start:
+start: cp_conf
 	@echo ">>> Starting Container ......"
 	docker-compose up -d --no-recreate
+	@echo ">>> Start: Visit http://localhost:9527 ...."
 status:
 	@echo ">>> Disply Docker Container Status......"
 	docker ps
@@ -45,6 +46,9 @@ vendor:
 vendor-remove:
 	@echo ">>> Remove Vendor package"
 	rm -rf www/vendor
+
+cp_conf:
+	cp _conf/default.conf /tmp
 
 # For checking DB internal IP
 get-db-ip:
