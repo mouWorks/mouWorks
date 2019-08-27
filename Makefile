@@ -3,6 +3,8 @@ include .env
 export
 BRANCH := $(shell git name-rev --name-only HEAD)
 
+.PHONY: vendor
+
 build: container-build vendor start
 	@echo ">>> Build Container and Vendor"
 container-build:
