@@ -47,8 +47,9 @@ vendor-remove:
 	@echo ">>> Remove Vendor package"
 	rm -rf www/vendor
 
-cp_conf:
+cp_conf: |
 	cp _conf/default.conf /tmp
+	cp _conf/my.cnf /tmp
 
 # For checking DB internal IP
 get-db-ip:
