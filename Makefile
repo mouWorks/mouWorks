@@ -50,21 +50,25 @@ vendor-remove:
 	rm -rf www/vendor
 
 cp_conf: |
+	rm -r /tmp/default.conf /tmp/my.cnf
 	cp _conf/default.conf /tmp
 	cp _conf/my.cnf /tmp
 
 # For checking DB internal IP
 get-db-ip:
 	@echo ">>> Getting DB IP"
-	docker inspect mouworks_mariadb_1 | grep IPAddress
+	docker inspect mw_dev_mysql | grep IPAddress
 
 db_backup:
 	@echo ">>> backing up the file"
-	docker exec mouworks_mariadb_1 /usr/bin/mysqldump -u root --password=${DB_PASS} ${DB_NAME} > ./sql/backup.sql
+	docker exec mw_dev_mysql /usr/bin/mysqldump -u root --password=${DB_PASS} ${DB_NAME} > ./sql/backup.sql
 
 db_restore:
 	@echo ">>> Restoring DB data"
-	cat ./sql/backup.sql | docker exec -i mouworks_mariadb_1 /usr/bin/mysql -u root --password=${DB_PASS} ${DB_NAME}
+	cat ./sql/backup.sql | docker exec -i mw_dev_mysql /usr/bin/mysql -u root --password=${DB_PASS} ${DB_NAME}
+
+db_init:
+	@echo ">>> Init DB Table"
 
 pull:
 	@echo ">>> Pull Code on Current branch [$(BRANCH)]"
