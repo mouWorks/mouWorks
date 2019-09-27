@@ -5,8 +5,8 @@ git:
 php:
 - 7.2
 addons:
-  sshknownhosts:
-  - secure: WEEDvrIs9wVBCEi+bj/4jOOYXrAsMb6QFkNokfhe9oxGupf29rZzA7No82t05fo5p2HQT45XBf9EtghOOtUH919nz//lR99uQZeSZTHVcstTHNu1ih0EfEdGYXbWOfRlmb8TnxKU5vGkq1To6gpbqTacMd+INKeE01b4PCp1JgsEL3sfW1HMsJ0BBEAIl817CnxykqiQcXWLow005woRCgh3nQH9Nof/oKOIHxs2ODQ3OX071qeQdLGLsNJ7MU7XiTFT5foHekwEWLmnsPxrkYk23vRXPhJ6czA6hoLLfX/85bTfCKzlKC/aUqNrJtWwZs1eq7k/7Yc4QnorIwOkBGZvGUzuxau1g0k/KPxU/pdj4Dty1iqTA7hOUKb1B/39xanCrjyH5lh/EcsI8PYQQgfJBNM6cIsgqAW8TGS3/Vzr+sHu8zqZrViRy+TI67wAhZAwQGOzWHgyI+u7OLbfON95ehRODkrNJw3ZftNUMKxs5uyaYVQOf4mGQngxy2JQXOyf0CBWwQ/KVL4vbEhydij1EGyXiWMExsAkK4g6TaQC5aCmVefMR1dqbQo5W/lZG99F97e1kDz0B8W1gEq33m8ERyuqPB/rYingoiOY6IWT76yRyx9Gt/6h9s8R2+UNUSYLr3f7Lqwmc3ZME0OCIAFIGtEIdEUrjG5xZA6DTlo=
+  ssh_known_hosts:
+  - $PRODUCTION_SERVER
 branches:
   only:
   - docker_to_nginx
@@ -24,8 +24,8 @@ script:
 - echo -e "SLACK_CHANNEL_WEBHOOKURL=$SLACK_CHANNEL_WEBHOOKURL" >> _conf/.env
 - cd ..
 - tar -czf code.tar.gz www
-- scp -i /tmp/id_rsa_mouWorks -o StrictHostKeyChecking=no code.tar.gz update.sh root@157.245.194.86:/tmp
-- ssh -i /tmp/id_rsa_mouWorks root@157.245.194.86 " cd /tmp && chmod +x update.sh
+- scp -i /tmp/id_rsa_mouWorks -o StrictHostKeyChecking=no code.tar.gz update.sh root@$PRODUCTION_SERVER:/tmp
+- ssh -i /tmp/id_rsa_mouWorks root@$PRODUCTION_SERVER " cd /tmp && chmod +x update.sh
   && ./update.sh "
 cache:
   directories:
