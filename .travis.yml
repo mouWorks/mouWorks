@@ -12,8 +12,8 @@ branches:
   - docker_to_nginx
 before_install:
 - openssl aes-256-cbc -K $encrypted_32d47422b72a_key -iv $encrypted_32d47422b72a_iv
-  -in id_rsa_mouWorks.enc -out ~\/.ssh/id_rsa_mouWorks -d
-- chmod 600 /tmp/digitalOcean_id_rsa
+  -in id_rsa_mouWorks.enc -out ~/tmp/id_rsa_mouWorks -d
+- chmod 600 /tmp/id_rsa_mouWorks
 script:
 - cd www
 - composer install --no-dev --optimize-autoloader
@@ -24,8 +24,7 @@ script:
 - echo -e "SLACK_CHANNEL_WEBHOOKURL=$SLACK_CHANNEL_WEBHOOKURL" >> _conf/.env
 - cd ..
 - tar -czf code.tar.gz www
-- scp -i /tmp/id_rsa_mouWorks -o StrictHostKeyChecking=no code.tar.gz update.sh
-  root@157.245.194.86:/tmp
+- scp -i /tmp/id_rsa_mouWorks -o StrictHostKeyChecking=no code.tar.gz update.sh root@157.245.194.86:/tmp
 - ssh -i /tmp/id_rsa_mouWorks root@157.245.194.86 " cd /tmp && chmod +x update.sh
   && ./update.sh "
 cache:
