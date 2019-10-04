@@ -53,16 +53,20 @@ $app->post('/jiebaText', function ($request, $response, $args) {
 
 //Choker Interface
 $app->get('/choker', function ($request, $response, $args) {
-//    echo 'eqqwe';exit();
     return $this->view->render($response, 'choker.twig');
 });
 
 
 //Meme Generator
 $app->get('/goose', function ($request, $response, $args) {
-//    echo 'eqqwe';exit();
     return $this->view->render($response, 'memeGen.twig');
 });
+
+//Wedding Album v2
+$app->get('/wed', function ($request, $response, $args) {
+    return $this->view->render($response, 'weddingAlbum.twig');
+});
+
 
 //L30 Wedding Album
 $app->get('/leoWedding', function ($request, $response, $args) {

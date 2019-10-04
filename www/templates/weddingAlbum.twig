@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Meme Generator</title>
+
+    {#<link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/blog/">#}
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/css/bootstrap-ubuntuStyle.min.css" rel="stylesheet">
+    <link href="/assets/css/blog.css" rel="stylesheet">
+    <link rel="icon" href="/assets/img/choke.png">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+
+    <style>
+        .cover-banner{
+            background-image: url('/assets/img/cover.jpg');
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:cover;
+            height:100px;
+        }
+    </style>
+</head>
+
+{% block body %}
+<div class="container">
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-10 text-center">
+                <a class="blog-header-logo text-dark" href="#"></a>
+            </div>
+            <div class="col-1 d-flex justify-content-end align-items-center">
+            </div>
+        </div>
+    </header>
+    <div class="">
+    </div>
+    <div class="row mb-2">
+        <!--- entire row --->
+        <div class="col-md-12">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    </strong>
+                    <div class="tags">
+                    </div>
+                    <h3 class="mb-0">
+                        李奧哥專業鵝肉攤(去骨)
+                    </h3>
+                    <br/>
+                    <h4 class="mb-0">
+                        <div class="btn-group btn-group-toggle textType " data-toggle="buttons">
+                            <label class="btn btn-outline-primary active">
+                                <input type="radio" name="textOptions" data-id="normal" > 正常
+                            </label>
+                            <label class="btn btn-outline-primary ">
+                                <input type="radio" name="textOptions" data-id="bold" > 粗體
+                            </label>
+                            <label class="btn btn-outline-primary">
+                                <input type="radio" name="textOptions" data-id="italic" > 斜體
+                            </label>
+                            <label class="btn btn-outline-primary">
+                                <input type="radio" name="textOptions" data-id="highlight" > 紅色高亮
+                            </label>
+                            <label class="btn btn-outline-primary">
+                                <input type="radio" name="textOptions" data-id="betel" >  <span class="badge badge-warning">New</span> 財哥
+                            </label>
+                        </div>
+                        <div class="input-group mb-3 mt-3">
+                            <input type="text" class="form-control chokeTextInput" placeholder="請輸入一個句子" aria-label="Search term" aria-describedby="basic-addon">
+                        </div>
+                        <button class="btn btn-success btn memeGen" type="button">產生圖片</button>
+                    </h4>
+                    <br/>
+                </div>
+            </div><!--end of block -->
+        </div>
+
+        <!-- another block -->
+        <div class="col-md-12">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm  position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                <h3>Result</h3>
+                    <span id="imgResult">
+                        <img src="/assets/img/cover.jpg"/>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Load JS and stuff -->
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="/assets/js/choker.js"></script>
+    <script>
+    </script>
+
+{% endblock %}
