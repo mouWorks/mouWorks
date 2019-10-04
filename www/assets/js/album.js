@@ -13,7 +13,6 @@ function showImg(thumbname){
 function bindImage(){
     //Bind the event when clicked on a thumb
     $('.image_thumbs>img').on('click', function (e) {
-        console.log('clicked');
         showImg(this);
     });
 }
