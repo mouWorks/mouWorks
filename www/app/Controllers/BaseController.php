@@ -94,13 +94,13 @@ class BaseController
     //Not yet complete
     public function connectDB(){
 
-        $serverName = 'mariadb'; //Here we use Docker-compose name (defined at Docker-Compose)
+        $serverName = 'mw_dev_mysql'; //Here we use Docker-compose name (defined at Docker-Compose)
         $username = "root";
-        $password = DB_PASS;
+        $password = 'secret';
         $dbname = DB_NAME;
 
         $serverPort = 3306;
-        $dsn = "mysql:host=".$serverName.";dbname=".$dbname.";port=".$serverPort;
+        $dsn = "mysql:host=".$serverName.";port=".$serverPort.";dbname=".$dbname;
         $conn = new \PDO($dsn, $username, $password);
 
         foreach ($conn->query('SELECT * from danceStyle') as $row) {
@@ -118,7 +118,7 @@ class BaseController
      */
     public function db_conn()
     {
-        $serverName = 'mariadb'; //Here we use Docker-compose name (defined at Docker-Compose)
+        $serverName = 'homestead'; //Here we use Docker-compose name (defined at Docker-Compose)
         $username = "root";
         $password = DB_PASS;
         $dbname = DB_NAME;

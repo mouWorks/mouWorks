@@ -4,5 +4,6 @@
     define('DEBUG', true);
     define('STAGE', 'development');
 
-    define('BASE_PATH', 'http://localhost:8080/index.php/');
+    define('BASE_PATH', '/');
+    //define('BASE_PATH', 'http://localhost:/');
 

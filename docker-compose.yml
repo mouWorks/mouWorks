@@ -1,37 +1,56 @@
-version: "3.2"
+version: '3'
 services:
-  php:
-    build: './DockerConf/php-fpm/'
+  mw_dev_redis:
+    container_name: mw_dev_redis
+    restart: always
+    image: redis:latest
+    ports:
+      - "6379:6379"
     networks:
-      - backend
-    volumes:
-      - ./www/:/var/www/html/
-  apache:
-    build: './DockerConf/apache/'
-    depends_on:
-      - php
-      - mariadb
-    networks:
-      - frontend
-      - backend
-    ports: # Maps Local 8080 to 80 port @Docker Image
-      - "8080:80"
-    volumes:
-      - ./www/:/var/www/html/
-    links:
-      - mariadb
-  mariadb:
-    build: './DockerConf/mariadb/'
-    networks:
-      - backend
-    environment:
-      - MYSQL_DATABASE=${DB_NAME}
-      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - mw_dev_docker_network
+  mw_dev_mysql:
+    container_name: mw_dev_mysql
+    restart: always
+    image: mariadb:10.3
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    volumes:
+      - /tmp/my.cnf:/etc/my.cnf
+      - ./sql:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=homestead
+      - MYSQL_PASSWORD=${DB_PASS}
+    networks:
+      - mw_dev_docker_network
+  mw_dev_phpfpm:
+    container_name: mw_dev_phpfpm
+    restart: always
+    build: './DockerConf/php-fpm/'
+    #  links:
+    #    - mw_dev_mysql:db
+    environment:
+      - DB_HOST=mw_dev_mysql
+      - BEANSTALKD_HOST=mw_dev_queue
+      - REDIS_HOST=mw_dev_redis
     volumes:
-       - ./sql:/docker-entrypoint-initdb.d
+      - ./www:/var/project
+    working_dir: /var/project
+    networks:
+      - mw_dev_docker_network
+  mw_dev_nginx:
+    container_name: mw_dev_nginx
+    restart: always
+    image: nginx:1.9.6
+    ports:
+      - "9527:80"
+    volumes:
+      - /tmp/default.conf:/etc/nginx/conf.d/default.conf
+      - ./www:/var/project
+    networks:
+      - mw_dev_docker_network
+
 networks:
-  frontend:
-  backend:
+  mw_dev_docker_network:

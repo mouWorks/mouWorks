@@ -5,15 +5,16 @@ git:
 php:
 - 7.2
 addons:
-  sshknownhosts:
-  - secure: WEEDvrIs9wVBCEi+bj/4jOOYXrAsMb6QFkNokfhe9oxGupf29rZzA7No82t05fo5p2HQT45XBf9EtghOOtUH919nz//lR99uQZeSZTHVcstTHNu1ih0EfEdGYXbWOfRlmb8TnxKU5vGkq1To6gpbqTacMd+INKeE01b4PCp1JgsEL3sfW1HMsJ0BBEAIl817CnxykqiQcXWLow005woRCgh3nQH9Nof/oKOIHxs2ODQ3OX071qeQdLGLsNJ7MU7XiTFT5foHekwEWLmnsPxrkYk23vRXPhJ6czA6hoLLfX/85bTfCKzlKC/aUqNrJtWwZs1eq7k/7Yc4QnorIwOkBGZvGUzuxau1g0k/KPxU/pdj4Dty1iqTA7hOUKb1B/39xanCrjyH5lh/EcsI8PYQQgfJBNM6cIsgqAW8TGS3/Vzr+sHu8zqZrViRy+TI67wAhZAwQGOzWHgyI+u7OLbfON95ehRODkrNJw3ZftNUMKxs5uyaYVQOf4mGQngxy2JQXOyf0CBWwQ/KVL4vbEhydij1EGyXiWMExsAkK4g6TaQC5aCmVefMR1dqbQo5W/lZG99F97e1kDz0B8W1gEq33m8ERyuqPB/rYingoiOY6IWT76yRyx9Gt/6h9s8R2+UNUSYLr3f7Lqwmc3ZME0OCIAFIGtEIdEUrjG5xZA6DTlo=
+  ssh_known_hosts:
+  - $PRODUCTION_SERVER
 branches:
   only:
+  - docker_to_nginx
   - prod
 before_install:
-- openssl aes-256-cbc -K $encrypted_2a25c86426a5_key -iv $encrypted_2a25c86426a5_iv
-  -in digitalOcean_id_rsa.enc -out /tmp/digitalOcean_id_rsa -d
-- chmod 600 /tmp/digitalOcean_id_rsa
+- openssl aes-256-cbc -K $encrypted_32d47422b72a_key -iv $encrypted_32d47422b72a_iv
+  -in id_rsa_mouWorks.enc -out /tmp/id_rsa_mouWorks -d
+- chmod 600 /tmp/id_rsa_mouWorks
 script:
 - cd www
 - composer install --no-dev --optimize-autoloader
@@ -22,12 +23,10 @@ script:
 - echo -e "LINE_BEARER=$LINE_BEARER" >> _conf/.env
 - echo -e "TEST_SHIT=$TEST_SHIT" >> _conf/.env
 - echo -e "SLACK_CHANNEL_WEBHOOKURL=$SLACK_CHANNEL_WEBHOOKURL" >> _conf/.env
-
 - cd ..
 - tar -czf code.tar.gz www
-- scp -i /tmp/digitalOcean_id_rsa -o StrictHostKeyChecking=no code.tar.gz update.sh
-  root@178.128.57.166:/tmp
-- ssh -i /tmp/digitalOcean_id_rsa root@178.128.57.166 " cd /tmp && chmod +x update.sh
+- scp -i /tmp/id_rsa_mouWorks -o StrictHostKeyChecking=no code.tar.gz update.sh root@$PRODUCTION_SERVER:/tmp
+- ssh -i /tmp/id_rsa_mouWorks root@$PRODUCTION_SERVER " cd /tmp && chmod +x update.sh
   && ./update.sh "
 cache:
   directories:
@@ -36,12 +35,12 @@ cache:
 notifications:
   slack:
     rooms:
-      - secure: kHvZIwGhXiKz0jAP546WcvDGAlmE4vHQFfjhb/5H+NUrR7NhT6VoWz77f3nj0icflpkXNCywxHVVlb4nPqYrSQU52CxE9a3p/DIbuCRcmO4Voe0IP3dJ7B1esVb6XbG6TLQVTEkoRLbyCNFOMtqPcdIw8F7O08n1UbcuUh6vv4wQqguqLjU6tcSz2hmnqIC4wLN4WpV8EFJB22pnCmF8DaLV3zB8BkgQkaWe01as85lyFCMfds5MO0OBsfN2z11X9TvpWUoEGvi7aA5cpwMWky8EFp9eFX+poj9COwev+fUxonuPL+pP8CQ8ujNm/AoZrECADjVGLB+Bn0/B33cK5GE84AGcfkJoabQGWzVbUHOLWM6Ht5LKPXNQVu7jUU7vtCnAyebuP1aqEOMrZ2aX0wi/bRwH4yqBadg7JcN38nSsFu8Ov8hIULPbLTfCSh8HjgEHPOq7TorfOIv+daY3X+cF6BaJcYlepc9hfTYOyRkQbybheh1XvTPpHBlDnJ6HI0gN/v7GDY/AtZKFNXl6l+1NCXX+ifdbcBHxlljjZNvV0MwmgekGF+3GeJ8F4XAiOINgcwvZOFH+sEg+7UZAWW2lfxAkYyOU7/cL3Z5sXW6Vmru3N5J7GCfkcOwzv6h6PQqojCKKJacBDb3zJOP/nfTHJwnLggHpE2In6/ggNcI=
+    - secure: kHvZIwGhXiKz0jAP546WcvDGAlmE4vHQFfjhb/5H+NUrR7NhT6VoWz77f3nj0icflpkXNCywxHVVlb4nPqYrSQU52CxE9a3p/DIbuCRcmO4Voe0IP3dJ7B1esVb6XbG6TLQVTEkoRLbyCNFOMtqPcdIw8F7O08n1UbcuUh6vv4wQqguqLjU6tcSz2hmnqIC4wLN4WpV8EFJB22pnCmF8DaLV3zB8BkgQkaWe01as85lyFCMfds5MO0OBsfN2z11X9TvpWUoEGvi7aA5cpwMWky8EFp9eFX+poj9COwev+fUxonuPL+pP8CQ8ujNm/AoZrECADjVGLB+Bn0/B33cK5GE84AGcfkJoabQGWzVbUHOLWM6Ht5LKPXNQVu7jUU7vtCnAyebuP1aqEOMrZ2aX0wi/bRwH4yqBadg7JcN38nSsFu8Ov8hIULPbLTfCSh8HjgEHPOq7TorfOIv+daY3X+cF6BaJcYlepc9hfTYOyRkQbybheh1XvTPpHBlDnJ6HI0gN/v7GDY/AtZKFNXl6l+1NCXX+ifdbcBHxlljjZNvV0MwmgekGF+3GeJ8F4XAiOINgcwvZOFH+sEg+7UZAWW2lfxAkYyOU7/cL3Z5sXW6Vmru3N5J7GCfkcOwzv6h6PQqojCKKJacBDb3zJOP/nfTHJwnLggHpE2In6/ggNcI=
     template:
-      - " `%{result}` <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) in
+    - " `%{result}` <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) in
       *%{duration}* "
-      - " Repo: %{repository_slug} @ *%{branch}*"
-      - " by *%{author}* "
+    - " Repo: %{repository_slug} @ *%{branch}*"
+    - " by *%{author}* "
 env:
   matrix:
     secure: pgTV3JzUYeKqXAbDAg9qUnOifaOn73rv/kdGAesQNdInTgskZrVtmrBU+HB7FT/nEUX6QvFIE60Ste3nyuWygo/O7DlWEkU3cg2nJNZ0fUgfytuBYc2FInJK9hZhuVAvm8QvmuW7exDSVukAisQUPyP6T+yU5uAw3PpA7pJx9aBdxMDObYt5mMM34k03YwltJrPtf5opARKyg3TenC19PbUk2lOX/DH3kE7bO/4Y91xgQ9PFvJeydvDTbjFKUbZx56m88oxgPm7NJBVD0G6BeLkWQ1s10FCuLEwVWtAudSqudvQo5WAOYqAsrz+OuzJ6MLTVtFiFKCAuXZ72O8DS+xqNWGGkNW21RMthrdG2EycWow6xrFEE4Re3iZO3qNIM9gs0K4hhFm5BJNOVo0tJIxqb8t9mN6tI8DGWRbm+IvHLccWRvyElIDOsC+qruvF2fOnDaEgmjaB+A6CvrJJvCQYi9jSMTELpmgHwFOMtEQSTUZTbM1/mtavOBeTt9GDKDeoonQux5ufVd+ro5XE47BGEObefhXjJx8gdhhZdjxO6UP9habL5is6UL6fF+KV+7bMm9Rz+cV/iDQeOyKViB1hnCvl9ryaOll+LePhIgZc0q+lE0167Pyi+O5+LiGdp4NcJI/R9xYbzFN3YYLLYwM2vo1oZ9RzOrH84Ch7qPaU=
