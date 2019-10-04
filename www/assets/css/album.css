@@ -1,0 +1,35 @@
+
+.split{
+	display: inline-block;
+
+}
+
+.left_nav
+{
+	width: 35%;
+
+}
+
+.right_nav
+{
+	width: 55%;
+	background-color: orange;
+}
+
+.show_midsize_photo
+{
+	display: block;
+}
+
+body {
+	font-family: Georgia;
+}
+
+img {
+	padding: 1px 1px 1px 1px;
+}
+
+.jumbotron{
+	margin-bottom: 0;
+
+}
