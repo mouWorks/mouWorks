@@ -1,35 +1,103 @@
 <head>
     <link href="/assets/css/bootstrap-ubuntuStyle.min.css" rel="stylesheet">
     <link rel="icon" href="/assets/img/choke.png">
+
+    <style>
+        .cover-banner{
+            background-image: url('/assets/img/cover.jpg');
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:cover;
+            height:100px;
+        }
+
+        /*.bd-placeholder-img-0{*/
+        /*    background-image: url(/assets/img/TomWang.jpg);*/
+        /*    background-position:center;*/
+        /*    background-repeat:no-repeat;*/
+        /*    background-size:cover;*/
+        /*}*/
+
+        /*.bd-placeholder-img-1{*/
+        /*    background-image: url(/assets/img/wildAlibis.jpg);*/
+        /*    background-position:center;*/
+        /*    background-repeat:no-repeat;*/
+        /*    background-size:cover;*/
+        /*}*/
+
+    </style>
 </head>
 
 {% block body %}
     <div class="container">
-
-        <div class="row">
-            <div class="col-1"></div>
-
-            <div class="col-10">
-                <h2>MouWorks 2019</h2>
-                <hr/>
-
-                <h4><code>Code POC</code></h4>
-                <p>
-                    <a href="{{ constant('BASE_PATH') }}timeSync" title="時間測試">TimeSync</a>
-                    <br/>
-                    <a href="{{ constant('BASE_PATH') }}fp" title="指紋測試">Canvas Fingerprint</a>
-                    <br/>
-                </p>
-                <hr/>
-                <h4>other</h4>
-                <a href="{{ constant('BASE_PATH') }}blues" title="Blues Events">Blues Events Taipei</a>
+        <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-10 text-center">
+                    <a class="blog-header-logo text-dark" href="#"></a>
+                </div>
+                <div class="col-1 d-flex justify-content-end align-items-center">
+                </div>
             </div>
-
-        </div><!-- Middle box-->
-
-    </div><!--row-->
-    </div><!--container-->
-
+        </header>
+        <div class="nav-scroller py-1 mb-1">
+        </div>
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark cover-banner">
+            <div class="col-md-6 px-0">
+                <h1 class="display-8 ">MouWorks 2019</h1>
+                <p class="lead my-3"></p>
+                <p class="lead mb-0"><a href="#" class="text-white font-weight-bold"></a></p>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <!--- entire row --->
+            <div class="col-md-12">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        </strong>
+                        <div class="tags">
+                        </div>
+                        <h3 class="mb-0">
+                           Code POC
+                        </h3>
+                        <br/>
+                        <h4 class="mb-0">
+                            <a href="{{ constant('BASE_PATH') }}timeSync" title="時間測試">TimeSync</a>
+                        </h4>
+                        <span class="card-text mb-auto">
+                            測試時間在Server端同步問題
+                        </span>
+                        <h4 class="mb-0">
+                            <a href="{{ constant('BASE_PATH') }}fp" title="指紋測試">Canvas Fingerprint</a>
+                        </h4>
+                        <p class="card-text mb-auto">
+                            測試一個指紋套件(使用 Canvas Fingerprint)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Split into 3--->
+            <div class="col-md-12">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <span class="col p-4 d-flex flex-column position-static">
+                        </strong>
+                        <div class="tags">
+                        </div>
+                        <h3 class="mb-0">
+                            Fun Stuff
+                        </h3>
+                        <br/>
+                        <h4 class="mb-0">
+                            <a href="{{ constant('BASE_PATH') }}blues" title="">Blues Events Taipei</a>
+                        </h4>
+                        <span class="card-text mb-auto">介紹台北藍調活動 </span>
+                        <h4 class="mb-0">
+                            </span>
+                            <a href="{{ constant('BASE_PATH') }}goose" title="">GooseBrother</a>
+                        </h4>
+                        <span class="card-text mb-auto">一個趣味 Meme Generator (still working...)</span>
+        </div>
+    </div>
+    </div>
     <!-- Load JS and stuff -->
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -39,8 +107,4 @@
     <script>
     </script>
 
-    {#<script src="/assets/js/poc-TimeSync2.js"></script>#}
-
 {% endblock %}
-
-
