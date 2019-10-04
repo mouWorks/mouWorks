@@ -57,6 +57,13 @@ $app->get('/choker', function ($request, $response, $args) {
     return $this->view->render($response, 'choker.twig');
 });
 
+
+//Meme Generator
+$app->get('/goose', function ($request, $response, $args) {
+//    echo 'eqqwe';exit();
+    return $this->view->render($response, 'memeGen.twig');
+});
+
 //L30 Wedding Album
 $app->get('/leoWedding', function ($request, $response, $args) {
     return $this->view->render($response, 'leowedding.twig');
