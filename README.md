@@ -9,4 +9,5 @@ MouWorks
     * [X] - Now trying with TravisCI
     * [X] - Add a blog page
     * [X] - Add 404 page, 500 page and Favicon
+    * [X] - Local Dockerized
     * [ ] - Connect to DB

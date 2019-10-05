@@ -50,7 +50,7 @@ vendor-remove:
 	rm -rf www/vendor
 
 cp_conf: |
-	rm -r /tmp/default.conf /tmp/my.cnf
+#	rm -r /tmp/default.conf /tmp/my.cnf
 	cp _conf/default.conf /tmp
 	cp _conf/my.cnf /tmp
 
