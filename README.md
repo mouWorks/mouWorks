@@ -3,6 +3,7 @@ MouWorks
 
 #### https://m0u.work
 
+[![Build Status](https://travis-ci.org/mouWorks/mouWorks.svg?branch=prod)](https://travis-ci.org/mouWorks/mouWorks)
 
 * Status
     * [X] - Now trying with TravisCI
