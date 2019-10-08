@@ -1,7 +1,7 @@
 language: php
 git:
   quiet: true
-  depth: 20
+  depth: 3
 php:
 - 7.2
 addons:
@@ -9,7 +9,6 @@ addons:
   - $PRODUCTION_SERVER
 branches:
   only:
-  - docker_to_nginx
   - prod
 before_install:
 - openssl aes-256-cbc -K $encrypted_32d47422b72a_key -iv $encrypted_32d47422b72a_iv
