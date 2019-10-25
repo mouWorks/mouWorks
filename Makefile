@@ -21,7 +21,7 @@ status:
 	docker ps
 stop:
 	@echo ">>> Stop container......"
-	docker-compose stop
+	docker-compose stop && rm -r /tmp/default.conf
 destroy: vendor-remove
 	@echo ">>> Destroy Services ......(Containers)"
 	docker-compose down --remove-orphans

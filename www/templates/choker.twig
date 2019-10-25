@@ -44,14 +44,14 @@
     </div>
     <div class="row mb-2">
         <!--- entire row --->
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
                     </strong>
                     <div class="tags">
                     </div>
-                    <h3 class="mb-0">
-                        L30.Choker
+                    <h3 class="mb-0"><span class="badge badge-success version"></span>
+                        L30.Choker (Text)
                     </h3>
                     <br/>
                     <h4 class="mb-0">
@@ -68,26 +68,51 @@
                             <label class="btn btn-outline-primary">
                                 <input type="radio" name="textOptions" data-id="highlight" > 紅色高亮
                             </label>
-                            <label class="btn btn-outline-primary">
-                                <input type="radio" name="textOptions" data-id="betel" >  <span class="badge badge-warning">New</span> 財哥
-                            </label>
+
                         </div>
                         <div class="input-group mb-3 mt-3">
                             <input type="text" class="form-control chokeTextInput" placeholder="想要嗆啥 ?" aria-label="Search term" aria-describedby="basic-addon">
                         </div>
                         <button class="btn btn-success btn choke" type="button">開嗆</button>
-                        <button class="btn btn-success btn memeGen" type="button">產生圖片</button>
+                    </h4>
+                    <br/>
+                </div>
+            </div><!--end of block -->
+        </div>
+        <div class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    </strong>
+                    <div class="tags">
+                    </div>
+                    <h3 class="mb-0">
+                        <span class="badge badge-warning">New</span> L30 ImageChoker
+                    </h3>
+                    <br/>
+                    <h4 class="mb-0">
+                        <div class="btn-group btn-group-toggle textType " data-toggle="buttons">
+                            <label class="btn btn-outline-primary">
+                                <input type="radio" name="textOptions" data-id="betel" > 李奧哥嚴厲的觀察著你！
+                            </label>
+                        </div>
+                        <div class="input-group mb-3 mt-3 ">
+                            <input type="text" class="form-control chokeImageText " maxlength="10" placeholder="想要嗆啥 ?" aria-label="Search term" aria-describedby="basic-addon">
+                        </div>
+{#                        <button class="btn btn-success btn choke" type="button">開嗆</button>#}
+                        <button class="btn btn-success btn memeGen" type="button">用圖片嗆</button>
                     </h4>
                     <br/>
                 </div>
             </div><!--end of block -->
         </div>
 
+
         <!-- another block -->
         <div class="col-md-12">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm  position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                <h3>Result</h3>
+                    <h3>
+                        Result</h3>
                     <span id="imgResult">
                         <img src="/assets/img/cover.jpg"/>
                     </span>

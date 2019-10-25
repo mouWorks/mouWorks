@@ -5,16 +5,25 @@ var chokeString = '';
 //DOC Ready
 $( document ).ready(function() {
 
-    $('h6 > .version').html('0011');
+    let ver = '0019';
 
+    $('.version').html(ver);
+
+    //Bind Events
     $('.choke').on('click', function(){
 
         simpleChoke();
 
-        var target = $('.choke');
-        tempDisableButton(target);
+        tempDisableButton($('.choke'));
 
     });
+
+    $('.memeGen').on('click', function(){
+
+       memeChoke();
+       tempDisableButton($('.memeGen'));
+    });
+
 
     function checkTextType(){
         return $('input[name=textOptions]:checked').attr('data-id');
@@ -41,16 +50,32 @@ $( document ).ready(function() {
         });
     }
 
-    // function ajaxCurl(chokeString){
-    //
-    //     $( document ).ready(function() {
-    //
-    //         $.get( chokeString, function( data ) {
-    //             $( ".result" ).html( data );
-    //         });
-    //
-    //     });
-    // }
+    function memeChoke(){
+
+        let chokeText = $('.chokeImageText').val();
+
+        let chokeUrl = 'https://njs.m0u.work/leoShout/' + chokeText;
+
+        $.ajax({
+            method: "get",
+            url: chokeUrl,
+            data: ''
+        })
+            .done(function( msg ) {
+                // alert( "Data Saved: " + msg );
+                console.log('success');
+                mountImage(msg.body);
+
+            }).fail(function(err){
+                console.log(err);
+                console.log('sth wrong');
+        });
+    }
+
+    function mountImage(imgUrl){
+
+        $('#imgResult > img').attr('src', imgUrl);
+    }
 
     function tempDisableButton(target) {
 
