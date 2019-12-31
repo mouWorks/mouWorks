@@ -24,9 +24,9 @@ script:
 - echo -e "SLACK_CHANNEL_WEBHOOKURL=$SLACK_CHANNEL_WEBHOOKURL" >> _conf/.env
 - cd ..
 - tar -czf code.tar.gz www
-- scp -i /tmp/id_rsa_mouWorks -o StrictHostKeyChecking=no code.tar.gz update.sh root@$PRODUCTION_SERVER:/tmp
-- ssh -i /tmp/id_rsa_mouWorks root@$PRODUCTION_SERVER " cd /tmp && chmod +x update.sh
-  && ./update.sh "
+- scp -i /tmp/id_rsa_mouWorks -o StrictHostKeyChecking=no code.tar.gz update.sh ubuntu@$PRODUCTION_SERVER:/tmp
+- ssh -i /tmp/id_rsa_mouWorks ubuntu@$PRODUCTION_SERVER " cd /tmp && sudo chmod +x update.sh
+  && sudo ./update.sh "
 cache:
   directories:
   - "$HOME/.composer/cache/files"
